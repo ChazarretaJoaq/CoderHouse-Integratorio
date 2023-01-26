@@ -1,0 +1,61 @@
+main {
+    min-height: 100%;
+    background-color: #555;
+
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: absolute;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar input {
+    display: flex;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar input.active {
+    background-color: grey;
+    color: white;
+}
+
+.sidebar input:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+@media screen and (max-width: 100%) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar input {
+        float: inline-end;
+    }
+
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 100%) {
+    .sidebar input {
+        text-align: left;
+        float: none;
+    }
+}
