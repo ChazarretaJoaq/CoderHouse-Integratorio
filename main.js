@@ -6,52 +6,58 @@ function calcularVentaIva(valor) {
 }
 function calcularCuotas(valor, cuotas) {
     let total;
+    let int;
     if (cuotas == 1) {
+        int = 0;
         total = valor;
     }
     else if (cuotas == 3) {
-        total = valor * 1.15;
+        int = 1.15;
+        total = valor * int;
     } else if (cuotas == 6) {
-        total = valor * 1.20;
+        int = 1.20;
+        total = valor * int;
     } else if (cuotas == 12) {
-        total = valor * 1.25;
+        int = 1.25;
+        total = valor * int;
     }
-    console.log("total con intereses: " + total);
+    // console.log("total con intereses: " + total);
+    // console.log("interes: " + (int - 1).toFixed(2))
+    // console.log("total con cuotas")
     return {
-        total: (total / cuotas),
-        interes: (total - valor),
-
+        total: (total),
+        interes: (valor * ((int - 1).toFixed(2))),
     };
 }
 const getValueInput = () => {
+    mostrar();
     let valor1 = document.getElementById("Productos").value;
-    console.log("camisetas: " + valor1);
+    // console.log("camisetas: " + valor1);
 
     let iva = calcularIva(parseFloat(valor1));
-    //(parseFloat(valor1));
-    console.log(iva);
-    // let ivaVenta = calcularVentaIva(parseFloat(inputValue2))
-    // console.log("segunda funcion: " + ivaVenta);
     let cuotas = document.getElementById("cuotas").value;
-    console.log("cuotas: " + cuotas);
-
     if (iva > 0 && cuotas != 0) {
         let { total, interes } = calcularCuotas(iva, cuotas);
-        console.log("total obj: " + total);
-        console.log("interes obj: " + interes);
-        console.log(iva + interes);
-        if (confirm(`El precio final del producto es: ${(iva + interes).toFixed(2)}$
-Valor de Cuota: ${total.toFixed(2)} $. En ${cuotas} cuotas.
+        if (confirm(`El precio final del producto es: ${(total).toFixed(2)}$
+Valor de Cuota: ${(total / cuotas).toFixed(2)} $. En ${cuotas} cuotas.
 Con un interes de ${interes.toFixed(2)}$.`)) {
             document.getElementById('label').innerHTML = "CONFIRMO PAGO";
         } else {
             document.getElementById('label').innerHTML = "CANCELO EL PAGO";
+            document.getElementById("Productos").value = 0;
+            document.getElementById("cuotas").value = 0;
         }
-        // document.getElementById('texto1').innerHTML = `El precio final del producto es: ${(iva + interes).toFixed(2)}$`;
-        // document.getElementById('label').innerHTML = `Valor de Cuota: ${total.toFixed(2)} $. En ${cuotas} cuotas.`;
-        // document.getElementById('interes').innerHTML = `Con un interes de ${interes.toFixed(2)}$.`;
     }
     else if ((cuotas == 0 || valor1 == 0 || iva == 0) || (valor1 != 0)) {
         alert("Seleccione un producto / cuotas a pagar");
     }
+
+}
+function mostrar() {
+    console.log("funcion mostrar");
+    let a = [];
+    for (let i = 0; i < 10; i++) {
+        a.push(i + 1)
+    }
+    console.log(a)
 }

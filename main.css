@@ -4,6 +4,12 @@ main {
 
 }
 
+table {
+    --bs-table-color: var(--bs-gray-600);
+    --bs-table-bg: var(--bs-gray-100);
+    --bs-table-border-color: transparent;
+}
+
 .sidebar {
     margin: 0;
     padding: 0;

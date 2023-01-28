@@ -8,6 +8,8 @@
     <title>CampeonStore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
 </head>
 <header>
@@ -37,13 +39,13 @@
     </div>
     <main>
         <div class="content">
-            <div class="card">
+            <div class="card" style="align-items: baseline ;">
                 <div class="row">
                     <div class="col active align-self-start">
                         <div class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/camiseta-argentina.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <p class="card-text">Camiseta Seleccion Argentina Titular</p>
+                                <p class="card-text">Camiseta Seleccion Argentina Titular. Messi</p>
                             </div>
                         </div>
                     </div>
@@ -71,39 +73,49 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col align-self-start">
+                        <div class="card text-center" style="width: 15rem;">
+                            <img class="card-img-top" src="img/campera-seleccion.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Campera Seleccion</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card-body">
-                <label for="Productos">Seleccione el producto: </label>
-                <select name="Productos" id="Productos">
-                    <option id="vacio" value="0" selected>--------</option>
-                    <option id="select1" value="19000">Camiseta Titular Seleccion </option>
-                    <option id="select2" value="17000">Camiseta Alternativa Seleccion </option>
-                    <option id="select3" value="15000">Short Titular Seleccion </option>
-                    <option id="select4" value="15000">Short Alternativo Seleccion </option>
-                </select>
-                <div>
-                    <label for="Cuotas">Seleccione cantidad de cuotas: </label>
-                    <select name="cuotas" id="cuotas">
+
+                <div style="text-align: center;">
+                    <br /><br /><br />
+                    <label for="Productos">Seleccione el producto: </label>
+                    <select name="Productos" id="Productos">
                         <option id="vacio" value="0" selected>--------</option>
-                        <option id="select1" value="1">1 Cuota</option>
-                        <option id="select3" value="3">3 Cuotas</option>
-                        <option id="select6" value="6">6 Cuotas</option>
-                        <option id="select12" value="12">12 Cuotas</option>
+                        <option id="select1" value="19000">Camiseta Titular Seleccion </option>
+                        <option id="select2" value="17000">Camiseta Alternativa Seleccion </option>
+                        <option id="select3" value="15000">Short Titular Seleccion </option>
+                        <option id="select4" value="15000">Short Alternativo Seleccion </option>
+                        <option id="select4" value="26000">Campera Seleccion </option>
                     </select>
+                    <div>
+                        <label for="Cuotas">Seleccione cantidad de cuotas: </label>
+                        <select name="cuotas" id="cuotas">
+                            <option id="vacio" value="0" selected>--------</option>
+                            <option id="select1" value="1">1 Cuota</option>
+                            <option id="select3" value="3">3 Cuotas</option>
+                            <option id="select6" value="6">6 Cuotas</option>
+                            <option id="select12" value="12">12 Cuotas</option>
+                        </select>
+                    </div>
+                    <button class="btn-success" type="button" onclick="getValueInput()">
+                        Consultar precio
+                    </button>
                 </div>
-                <button class="btn-success" type="button" onclick="getValueInput()">
-                    Consultar precio
-                </button>
-            </div>
-            <div>
-                <label id=" texto1"></label>
-                <label id="label"></label><br />
-                <label id="interes"></label>
+                <div>
+                    <label id=" texto1"></label>
+                    <label id="label"></label><br />
+                    <label id="interes"></label>
+                </div>
             </div>
         </div>
-
     </main>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
