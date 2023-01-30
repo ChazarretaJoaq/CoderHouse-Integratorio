@@ -21,7 +21,7 @@
 </header>
 
 <body>
-    <div class="sidebar">
+    <!-- <div class="sidebar">
         <form onsubmit="return false">
             <div class="d-flex left-content-between align-items-center">
                 <input type="radio" value="todos"><label>TODOS </label>
@@ -36,8 +36,9 @@
                 <input type="radio" value="zapatillas"><label>Zapatillas</label>
             </div>
         </form>
-    </div>
+    </div> -->
     <main>
+
         <div class="content">
             <div class="card" style="align-items: baseline ;">
                 <div class="row">
@@ -81,6 +82,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col align-self-start">
+                        <div class="card text-center" style="width: 15rem;">
+                            <img class="card-img-top" src="img/campera seleccion 2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Campera Seleccion Reversible</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-start">
+                        <div class="card text-center" style="width: 15rem;">
+                            <img class="card-img-top" src="img/medias seleccion.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Medias Seleccion</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-start">
+                        <div class="card text-center" style="width: 15rem;">
+                            <img class="card-img-top" src="img/botines seleccion.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <p class="card-text">Botines</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -95,7 +120,7 @@
                         <option id="select4" value="15000">Short Alternativo Seleccion </option>
                         <option id="select4" value="26000">Campera Seleccion </option>
                     </select>
-                    <div>
+                    <div style="text-align: left;">
                         <label for="Cuotas">Seleccione cantidad de cuotas: </label>
                         <select name="cuotas" id="cuotas">
                             <option id="vacio" value="0" selected>--------</option>
@@ -104,6 +129,10 @@
                             <option id="select6" value="6">6 Cuotas</option>
                             <option id="select12" value="12">12 Cuotas</option>
                         </select>
+                    </div>
+                    <div style="text-align: left    ;">
+                        <label for="Cantidad">Seleccione cantidad: </label>
+                        <input for="Cantidad" type="number" id="Cantidad" min="1" max="5">
                     </div>
                     <button class="btn-success" type="button" onclick="getValueInput()">
                         Consultar precio
@@ -122,9 +151,9 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <footer>
-        <label>About</label>
-    </footer>
 </body>
+<footer>
+    <p style="text-align: center;">About</p>
+</footer>
 
 </html>

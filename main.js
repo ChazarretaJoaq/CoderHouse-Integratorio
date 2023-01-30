@@ -22,19 +22,30 @@ function calcularCuotas(valor, cuotas) {
         total = valor * int;
     }
     // console.log("total con intereses: " + total);
-    // console.log("interes: " + (int - 1).toFixed(2))
+    console.log("interes: " + int)
+
+    if (int > 0) {
+        return {
+            total: (total),
+            interes: (valor * ((int - 1).toFixed(2))),
+        };
+    }
+    else {
+        return {
+            total: total,
+            interes: (valor)
+        }
+    }
     // console.log("total con cuotas")
-    return {
-        total: (total),
-        interes: (valor * ((int - 1).toFixed(2))),
-    };
 }
 const getValueInput = () => {
-    mostrar();
+    //mostrar();
     let valor1 = document.getElementById("Productos").value;
-    // console.log("camisetas: " + valor1);
+    let cantidad = document.getElementById("Cantidad").value;
 
-    let iva = calcularIva(parseFloat(valor1));
+    console.log("camisetas: " + cantidad);
+
+    let iva = calcularIva(parseFloat(valor1 * cantidad));
     let cuotas = document.getElementById("cuotas").value;
     if (iva > 0 && cuotas != 0) {
         let { total, interes } = calcularCuotas(iva, cuotas);
