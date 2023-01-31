@@ -1,8 +1,6 @@
+
 function calcularIva(valor) {
     return valor + (valor * 0.21)
-}
-function calcularVentaIva(valor) {
-    return valor * 1.25
 }
 function calcularCuotas(valor, cuotas) {
     let total;
@@ -38,7 +36,7 @@ function calcularCuotas(valor, cuotas) {
     }
     // console.log("total con cuotas")
 }
-const getValueInput = () => {
+const realizarCompra = () => {
     //mostrar();
     let valor1 = document.getElementById("Productos").value;
     let cantidad = document.getElementById("Cantidad").value;
@@ -63,12 +61,4 @@ Con un interes de ${interes.toFixed(2)}$.`)) {
         alert("Seleccione un producto / cuotas a pagar");
     }
 
-}
-function mostrar() {
-    console.log("funcion mostrar");
-    let a = [];
-    for (let i = 0; i < 10; i++) {
-        a.push(i + 1)
-    }
-    console.log(a)
 }
