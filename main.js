@@ -19,9 +19,6 @@ function calcularCuotas(valor, cuotas) {
         int = 1.25;
         total = valor * int;
     }
-    // console.log("total con intereses: " + total);
-    console.log("interes: " + int)
-
     if (int > 0) {
         return {
             total: (total),
@@ -34,15 +31,10 @@ function calcularCuotas(valor, cuotas) {
             interes: (valor)
         }
     }
-    // console.log("total con cuotas")
 }
 const realizarCompra = () => {
-    //mostrar();
     let valor1 = document.getElementById("Productos").value;
     let cantidad = document.getElementById("Cantidad").value;
-
-    console.log("camisetas: " + cantidad);
-
     let iva = calcularIva(parseFloat(valor1 * cantidad));
     let cuotas = document.getElementById("cuotas").value;
     if (iva > 0 && cuotas != 0) {
