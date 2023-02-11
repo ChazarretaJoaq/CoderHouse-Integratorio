@@ -1,4 +1,33 @@
 
+class Product {
+    constructor(nombre, precio, detalle, id, categoria, total) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.detalle = detalle;
+        this.id = id;
+        this.categoria = categoria;
+        this.total = total;
+    }
+}
+class carritoTotal {
+    constructor(total, interes) {
+        this.total = total;
+        this.interes = interes;
+    }
+}
+let arrayDetalles = [
+    { id: 1, nombre: "Camiseta Titular Seleccion", categoria: "Camiseta", detalle: "Camiseta Titular Seleccion con las 3 estrellas", precio: 19000 },
+    { id: 2, nombre: "Camiseta Alternativa Seleccion", categoria: "Camiseta", detalle: "Camiseta Aleternativa Seleccion color violeta con detalles", precio: 17000 },
+    { id: 3, nombre: "Short Titular Seleccion", categoria: "Short", detalle: "Short Titular Seleccion color negro", precio: 15000 },
+    { id: 4, nombre: "Short Alternativo Seleccion", categoria: "Short", detalle: "Short Alternativa Seleccion color violeta", precio: 15000 },
+    { id: 5, nombre: "Campera Seleccion", categoria: "Campera", detalle: "Campera Seleccion con capucha para lluvia", precio: 26000 },
+    { id: 6, nombre: "Campera Seleccion Reversible", categoria: "Campera", detalle: "Campera Reversible Seleccion de un lado celeste y del otro violeta", precio: 32000 },
+    { id: 7, nombre: "Medias Seleccion Argentina", categoria: "Medias", detalle: "Medias Seleccion, blancas titulares", precio: 12000 },
+    { id: 8, nombre: "Botines Adidas", categoria: "Botines", detalle: "Botines Adidas, ultima generacion para futbol sala", precio: 35000 }
+]
+
+let vecProduct = [];
+
 function calcularIva(valor) {
     return valor + (valor * 0.21)
 }
@@ -32,7 +61,52 @@ function calcularCuotas(valor, cuotas) {
         }
     }
 }
+function obtenerValorProduct() {
+    return valor1 = document.getElementById("Productos").value;
+}
+function obtenerCantidadProduct() {
+    return cantidad = document.getElementById("Cantidad").value;
+
+}
+function obtenerIvaProduct(valor, cantidad) {
+    return iva = calcularIva(parseFloat(valor * cantidad));
+}
+function obtenerCuotas() {
+    return cuotas = document.getElementById("cuotas").value;
+}
+
+const agregarCarrito = () => {
+    let index = document.getElementById("Productos").selectedIndex;
+    let descripcion = arrayDetalles.find(description => description.id === index)
+    // obtener precios 
+    let prodValue = obtenerValorProduct();
+    let cantidad = obtenerCantidadProduct();
+    let iva = obtenerIvaProduct(prodValue, cantidad);
+    let cuotas = obtenerCuotas();
+    let arcarritoTotal = [];
+    if (iva > 0 && cuotas != 0) {
+        arcarritoTotal = calcularCuotas(iva, cuotas);
+    }
+    vecProduct.push(new Product(descripcion.nombre, descripcion.precio, descripcion.detalle, descripcion.id, descripcion.categoria, arcarritoTotal.total.toFixed(2)))
+}
+
+const mostrarCarrito = () => {
+    let total = [];
+    let totalFin = 0;
+    // mostrar en pantalla
+    vecProduct.forEach(element => {
+        total.push(element.total);
+        document.getElementById("carrito").innerHTML += ` ${element.nombre}, $  ${element.total}    <br/>`
+    })
+    total.forEach(element => {
+        totalFin += parseFloat(element);
+    })
+    if (totalFin > 0) {
+        document.getElementById("total").innerHTML += `<br/> TOTAL A PAGAR:    $ ${parseFloat(totalFin)}`;
+    }
+}
 const realizarCompra = () => {
+    let index = document.getElementById("Productos").selectedIndex;
     let valor1 = document.getElementById("Productos").value;
     let cantidad = document.getElementById("Cantidad").value;
     let iva = calcularIva(parseFloat(valor1 * cantidad));

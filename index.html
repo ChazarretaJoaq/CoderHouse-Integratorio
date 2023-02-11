@@ -70,7 +70,7 @@
                         <div class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/short alternativo.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <p class="card-text">Short Seleccion Argentina Suplente</p>
+                                <p id="shortSeleccion" class="card-text">Short Seleccion Argentina Suplente</p>
                             </div>
                         </div>
                     </div>
@@ -107,20 +107,21 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div style="text-align: center;">
+                <div style="text-align: center; width: 80%;">
                     <br /><br /><br />
                     <label for="Productos">Seleccione el producto: </label>
                     <select name="Productos" id="Productos">
-                        <option id="vacio" value="0" selected>--------</option>
-                        <option id="select1" value="19000">Camiseta Titular Seleccion </option>
-                        <option id="select2" value="17000">Camiseta Alternativa Seleccion </option>
-                        <option id="select3" value="15000">Short Titular Seleccion </option>
-                        <option id="select4" value="15000">Short Alternativo Seleccion </option>
-                        <option id="select4" value="26000">Campera Seleccion </option>
+                        <option value="0" selected>--------</option>
+                        <option value="19000">Camiseta Titular Seleccion </option>
+                        <option value="17000">Camiseta Alternativa Seleccion </option>
+                        <option value="15000">Short Titular Seleccion </option>
+                        <option value="15000">Short Alternativo Seleccion </option>
+                        <option value="26000">Campera Seleccion </option>
+                        <option value="32000">Campera Seleccion Reversible </option>
+                        <option value="12000">Medias Seleccion Argentina </option>
+                        <option value="35000">Botines Adidas </option>
                     </select>
-                    <div style="text-align: left;">
+                    <div>
                         <label for="Cuotas">Seleccione cantidad de cuotas: </label>
                         <select name="cuotas" id="cuotas">
                             <option id="vacio" value="0" selected>--------</option>
@@ -129,22 +130,37 @@
                             <option id="select6" value="6">6 Cuotas</option>
                             <option id="select12" value="12">12 Cuotas</option>
                         </select>
+
+                        <div>
+                            <label for="Cantidad">Seleccione cantidad: </label>
+                            <input for="Cantidad" type="number" id="Cantidad" min="1" max="5">
+                        </div>
+                        <button class="btn-success" type="button" onclick="agregarCarrito()">
+                            Agregar al Carrito</button>
+                        <button class="btn-success" type="button" onclick="realizarCompra()">
+                            Consultar precio
+                        </button>
+
                     </div>
-                    <div style="text-align: left    ;">
-                        <label for="Cantidad">Seleccione cantidad: </label>
-                        <input for="Cantidad" type="number" id="Cantidad" min="1" max="5">
+                    <div>
+                        <label id=" texto1"></label>
+                        <label id="label"></label><br />
+                        <label id="interes"></label>
                     </div>
-                    <button class="btn-success" type="button" onclick="realizarCompra()">
-                        Consultar precio
-                    </button>
-                </div>
-                <div>
-                    <label id=" texto1"></label>
-                    <label id="label"></label><br />
-                    <label id="interes"></label>
+                    <div style="text-align: center;  
+                width: 100%;">
+                        <form>
+                            <button class=" btn-success" type="button" onclick="mostrarCarrito()">
+                                Mostrar Carrito
+                            </button>
+                        </form>
+                        <div className="mostarCarrito">
+                            <label id="carrito"></label><br />
+                            <h1 id="total"></h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
     <script src="inicio.js"></script>
     <script src="main.js"></script>
