@@ -96,7 +96,7 @@ const mostrarCarrito = () => {
     // mostrar en pantalla
     vecProduct.forEach(element => {
         total.push(element.total);
-        document.getElementById("carrito").innerHTML += ` ${element.nombre}, $  ${element.total}    <br/>`
+        document.getElementById("carrito").innerHTML += `<br/> ${element.nombre}, $  ${element.total}    <br/>`
     })
     total.forEach(element => {
         totalFin += parseFloat(element);
@@ -106,7 +106,6 @@ const mostrarCarrito = () => {
     }
 }
 const realizarCompra = () => {
-    let index = document.getElementById("Productos").selectedIndex;
     let valor1 = document.getElementById("Productos").value;
     let cantidad = document.getElementById("Cantidad").value;
     let iva = calcularIva(parseFloat(valor1 * cantidad));
