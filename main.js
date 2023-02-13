@@ -74,8 +74,36 @@ function obtenerIvaProduct(valor, cantidad) {
 function obtenerCuotas() {
     return cuotas = document.getElementById("cuotas").value;
 }
+//INICIO DE PRUEBAS
+const filtarProductos = () => {
+    let img = document.querySelectorAll(".card");
+    class valorObtenido {
+        constructor(prod, status) {
+            this.prod = prod;
+            this.status = status;
+        }
+    };
+    let conjuntoProd = [];
 
+    for (let i = 0; i < document.prcheckbox.elements.length; i++) {
+        if (document.prcheckbox.elements[i].checked === true) {
+            conjuntoProd.push(new valorObtenido(document.prcheckbox.elements[i].id, document.prcheckbox.elements[i].checked))
+        }
+        else {
+            conjuntoProd.push(new valorObtenido(document.prcheckbox.elements[i].id, document.prcheckbox.elements[i].checked))
+        }
+    }
+    img.forEach(function (element) {
+        for (let i = 0; i < conjuntoProd.length; i++) {
+            if (element.id === conjuntoProd[i].prod.toUpperCase() && conjuntoProd[i].status === true) {
+                element.style.display = "block"
+                element.style.visibility = "hidden"
+            }
+        }
+    })
+}
 const agregarCarrito = () => {
+
     let index = document.getElementById("Productos").selectedIndex;
     let descripcion = arrayDetalles.find(description => description.id === index)
     // obtener precios 

@@ -21,37 +21,43 @@
 </header>
 
 <body>
-    <!-- <div class="sidebar">
-        <form onsubmit="return false">
+    <div class="sidebar">
+        <form name="prcheckbox" id="formCheck">
             <div class="d-flex left-content-between align-items-center">
-                <input type="radio" value="todos"><label>TODOS </label>
+                <input type="checkbox" id="all"><label> TODOS </label>
             </div>
             <div class="d-flex left-content-between align-items-center">
-                <input type="radio" value="camisetas"><label>Camisetas</label>
+                <input type="checkbox" id="camiseta"><label>Camisetas</label>
             </div>
             <div class="d-flex left-content-between align-items-center">
-                <input type="radio" value="shorts"><label>Shorts</label>
+                <input type="checkbox" id="short"><label>Shorts</label>
             </div>
             <div class="d-flex left-content-between align-items-center">
-                <input type="radio" value="zapatillas"><label>Zapatillas</label>
+                <input type="checkbox" id="botines"><label>Botines</label>
             </div>
+            <div class="d-flex left-content-between align-items-center">
+                <input type="checkbox" id="campera"><label>Camperas</label>
+            </div>
+            <div class="d-flex left-content-between align-items-center">
+                <input type="checkbox" id="medias"><label>Medias</label>
+            </div>
+            <button class=" btn-success" id="btn" type="button" onclick="filtarProductos()">Ocultar</button>
         </form>
-    </div> -->
+    </div>
     <main>
 
-        <div class="content">
+        <div class="content" id="Categorias">
             <div class="card" style="align-items: baseline ;">
                 <div class="row">
                     <div class="col active align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/camiseta-argentina.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Camiseta Seleccion Argentina Titular. Messi</p>
-                            </div>
+                        <div id="CAMISETA" class="card text-center" style="width: 15rem;">
+                            <img id="camisetaTitular" class="card-img-top" src="img/camiseta-argentina.jpg"
+                                alt="Card image cap">
+                            <p class="PRUEBA"> Camiseta Seleccion Argentina Titular. Messi</p>
                         </div>
                     </div>
                     <div class="col active align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="CAMISETA" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/seleccion-alternativa.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Camiseta Seleccion Argentina Suplente</p>
@@ -59,7 +65,7 @@
                         </div>
                     </div>
                     <div class="col align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="SHORT" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/short seleccion argentina.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Short Seleccion Argentina Titular</p>
@@ -67,7 +73,7 @@
                         </div>
                     </div>
                     <div class="col align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="SHORT" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/short alternativo.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p id="shortSeleccion" class="card-text">Short Seleccion Argentina Suplente</p>
@@ -75,7 +81,7 @@
                         </div>
                     </div>
                     <div class="col align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="CAMPERA" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/campera-seleccion.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Campera Seleccion</p>
@@ -83,7 +89,7 @@
                         </div>
                     </div>
                     <div class="col align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="CAMPERA" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/campera seleccion 2.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Campera Seleccion Reversible</p>
@@ -91,7 +97,7 @@
                         </div>
                     </div>
                     <div class="col align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="MEDIAS" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/medias seleccion.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Medias Seleccion</p>
@@ -99,13 +105,14 @@
                         </div>
                     </div>
                     <div class="col align-self-start">
-                        <div class="card text-center" style="width: 15rem;">
+                        <div id="BOTINES" class="card text-center" style="width: 15rem;">
                             <img class="card-img-top" src="img/botines seleccion.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Botines</p>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div style="text-align: center; width: 90%;">
                     <br /><br /><br />
