@@ -1,11 +1,12 @@
 
 class Product {
-    constructor(nombre, precio, detalle, id, categoria, total) {
+    constructor(nombre, precio, detalle, id, categoria, cantidad, total) {
         this.nombre = nombre;
         this.precio = precio;
         this.detalle = detalle;
         this.id = id;
         this.categoria = categoria;
+        this.cantidad = cantidad;
         this.total = total;
     }
 }
@@ -16,20 +17,21 @@ class carritoTotal {
     }
 }
 let arrayDetalles = [
-    { id: 1, nombre: "Camiseta Titular Seleccion", categoria: "Camiseta", detalle: "Camiseta Titular Seleccion con las 3 estrellas", precio: 19000 },
-    { id: 2, nombre: "Camiseta Alternativa Seleccion", categoria: "Camiseta", detalle: "Camiseta Aleternativa Seleccion color violeta con detalles", precio: 17000 },
-    { id: 3, nombre: "Short Titular Seleccion", categoria: "Short", detalle: "Short Titular Seleccion color negro", precio: 15000 },
-    { id: 4, nombre: "Short Alternativo Seleccion", categoria: "Short", detalle: "Short Alternativa Seleccion color violeta", precio: 15000 },
-    { id: 5, nombre: "Campera Seleccion", categoria: "Campera", detalle: "Campera Seleccion con capucha para lluvia", precio: 26000 },
-    { id: 6, nombre: "Campera Seleccion Reversible", categoria: "Campera", detalle: "Campera Reversible Seleccion de un lado celeste y del otro violeta", precio: 32000 },
-    { id: 7, nombre: "Medias Seleccion Argentina", categoria: "Medias", detalle: "Medias Seleccion, blancas titulares", precio: 12000 },
-    { id: 8, nombre: "Botines Adidas", categoria: "Botines", detalle: "Botines Adidas, ultima generacion para futbol sala", precio: 35000 }
+    { id: 1, nombre: "Camiseta Titular Seleccion", categoria: "Camiseta", detalle: "Camiseta Titular Seleccion con las 3 estrellas", precio: 19000, img: "img/camiseta-argentina.jpg" },
+    { id: 2, nombre: "Camiseta Alternativa Seleccion", categoria: "Camiseta", detalle: "Camiseta Aleternativa Seleccion color violeta con detalles", precio: 17000, img: "img/seleccion-alternativa.jpg" },
+    { id: 3, nombre: "Short Titular Seleccion", categoria: "Short", detalle: "Short Titular Seleccion color negro", precio: 15000, img: "img/short_seleccion_argentina.jpg" },
+    { id: 4, nombre: "Short Alternativo Seleccion", categoria: "Short", detalle: "Short Alternativa Seleccion color violeta", precio: 15000, img: "img/short_alternativo.jpg" },
+    { id: 5, nombre: "Campera Seleccion", categoria: "Campera", detalle: "Campera Seleccion con capucha para lluvia", precio: 26000, img: "img/campera-seleccion.jpg" },
+    { id: 6, nombre: "Campera Seleccion Reversible", categoria: "Campera", detalle: "Campera Reversible Seleccion de un lado celeste y del otro violeta", precio: 32000, img: "img/campera_seleccion_2.jpg" },
+    { id: 7, nombre: "Medias Seleccion Argentina", categoria: "Medias", detalle: "Medias Seleccion, blancas titulares", precio: 12000, img: "img/medias_seleccion.jpg" },
+    { id: 8, nombre: "Botines Adidas", categoria: "Botines", detalle: "Botines Adidas, ultima generacion para futbol sala", precio: 35000, img: "img/botines_seleccion.jpg" }
 ]
+
 
 let vecProduct = [];
 
 function calcularIva(valor) {
-    return valor + (valor * 0.21)
+    return valor * 1.21
 }
 function calcularCuotas(valor, cuotas) {
     let total;
@@ -74,66 +76,98 @@ function obtenerIvaProduct(valor, cantidad) {
 function obtenerCuotas() {
     return cuotas = document.getElementById("cuotas").value;
 }
-//INICIO DE PRUEBAS
-const filtarProductos = () => {
-    let img = document.querySelectorAll(".card");
-    class valorObtenido {
-        constructor(prod, status) {
-            this.prod = prod;
-            this.status = status;
-        }
-    };
-    let conjuntoProd = [];
+let filtroSelect = document.querySelector('#filtro')
+let contenedor = document.getElementById('contenedor')
 
-    for (let i = 0; i < document.prcheckbox.elements.length; i++) {
-        if (document.prcheckbox.elements[i].checked === true) {
-            conjuntoProd.push(new valorObtenido(document.prcheckbox.elements[i].id, document.prcheckbox.elements[i].checked))
-        }
-        else {
-            conjuntoProd.push(new valorObtenido(document.prcheckbox.elements[i].id, document.prcheckbox.elements[i].checked))
-        }
+filtroSelect.addEventListener('change', () => {
+    if (filtroSelect.value == 'all') {
+        mostrarProductos(arrayDetalles)
+    } else {
+        let arrayFiltrado = arrayDetalles.filter((prod) =>
+            prod.categoria.toLowerCase() == filtroSelect.value
+        )
+        console.log(arrayFiltrado);
+        mostrarProductos(arrayFiltrado)
     }
-    img.forEach(function (element) {
-        for (let i = 0; i < conjuntoProd.length; i++) {
-            if (element.id === conjuntoProd[i].prod.toUpperCase() && conjuntoProd[i].status === true) {
-                element.style.display = "block"
-                element.style.visibility = "hidden"
-            }
-        }
+})
+
+const mostrarProductos = (array) => {
+    contenedor.innerHTML = ""
+    array.forEach((prod) => {
+        let div = document.createElement('div')
+        div.className = "col active align-self-start"
+        div.innerHTML = `<div id="CAMISETA" class="card text-center" style="width: 15rem;">
+                                <img id="camisetaTitular" class="card-img-top" src=${prod.img}
+                                    alt="Card image cap">
+                                <p class="PRUEBA">${prod.nombre}</p>
+                            </div>
+            
+            `
+        contenedor.appendChild(div)
     })
 }
-const agregarCarrito = () => {
 
+mostrarProductos(arrayDetalles);
+const agregarCarrito = () => {
+    let label = document.getElementById('label')
+    label.innerHTML = "";
     let index = document.getElementById("Productos").selectedIndex;
     let descripcion = arrayDetalles.find(description => description.id === index)
     // obtener precios 
     let prodValue = obtenerValorProduct();
     let cantidad = obtenerCantidadProduct();
-    let iva = obtenerIvaProduct(prodValue, cantidad);
-    let cuotas = obtenerCuotas();
-    let arcarritoTotal = [];
-    if (iva > 0 && cuotas != 0) {
-        arcarritoTotal = calcularCuotas(iva, cuotas);
-    }
-    vecProduct.push(new Product(descripcion.nombre, descripcion.precio, descripcion.detalle, descripcion.id, descripcion.categoria, arcarritoTotal.total.toFixed(2)))
+    // let iva = obtenerIvaProduct(prodValue, cantidad);
+    // let cuotas = obtenerCuotas();
+    let totalIva = calcularIva(prodValue) * cantidad;
+    console.log(totalIva);
+    // let arcarritoTotal = [];
+    // if (iva > 0 && cuotas != 0) {
+    // arcarritoTotal = calcularCuotas(iva, cuotas);
+    vecProduct.push(new Product(descripcion.nombre, descripcion.precio, descripcion.detalle, descripcion.id, descripcion.categoria, cantidad, totalIva.toFixed(2)))
+    // }
+    let productosMap = vecProduct.map(producto => {
+        return [JSON.stringify(producto), producto]
+    });
+    let prodMapArr = new Map(productosMap);
+    let unicos = [...prodMapArr.values()];
+    arreglo_json = JSON.stringify(unicos);
+    localStorage.setItem("vect_product", arreglo_json);
 }
 
 const mostrarCarrito = () => {
-    let total = [];
-    let totalFin = 0;
-    // mostrar en pantalla
-    vecProduct.forEach(element => {
-        total.push(element.total);
-        document.getElementById("carrito").innerHTML += `<br/> ${element.nombre}, $  ${element.total}    <br/>`
-    })
-    total.forEach(element => {
-        totalFin += parseFloat(element);
-    })
-    if (totalFin > 0) {
-        document.getElementById("total").innerHTML += `<br/> TOTAL A PAGAR:    $ ${parseFloat(totalFin)}`;
+    document.getElementById('label').innerHTML = "";
+    document.getElementById("carrito").innerHTML = "";
+    document.getElementById("total").innerHTML = "";
+    let sumTotal = 0;
+    let mos_arreglo = localStorage.getItem("vect_product");
+    let pantallacarrito = document.getElementById("carrito");
+    mos_arreglo = JSON.parse(mos_arreglo);
+    for (let i of mos_arreglo) {
+        sumTotal += parseFloat(i.total)
+        pantallacarrito.innerHTML += `<br/> ${i.nombre}, $  ${i.total}   <button  class="btn-success" type="button">  Eliminar </button>`
+    }
+    if (sumTotal > 0) {
+        document.getElementById("total").innerHTML += `
+        <div class="mostcarrito">
+        <label for="Cuotas">Seleccione cantidad de cuotas: </label>
+        <select class="mostcarrito" name="cuotas" id="cuotas">
+            <option id="vacio" value="0" selected>--------</option>
+            <option id="select1" value="1">1 Cuota</option>
+            <option id="select3" value="3">3 Cuotas</option>
+            <option id="select6" value="6">6 Cuotas</option>
+            <option id="select12" value="12">12 Cuotas</option>
+        </select>
+        </div>
+        <div class="mostcarrito">
+        <h1>TOTAL A PAGAR:    $ ${parseFloat(sumTotal)}</h1>
+        </div>
+        `;
+
     }
 }
 const realizarCompra = () => {
+    document.getElementById('label').innerHTML = "";
+
     let valor1 = document.getElementById("Productos").value;
     let cantidad = document.getElementById("Cantidad").value;
     let iva = calcularIva(parseFloat(valor1 * cantidad));
@@ -141,11 +175,11 @@ const realizarCompra = () => {
     if (iva > 0 && cuotas != 0) {
         let { total, interes } = calcularCuotas(iva, cuotas);
         if (confirm(`El precio final del producto es: ${(total).toFixed(2)}$
-Valor de Cuota: ${(total / cuotas).toFixed(2)} $. En ${cuotas} cuotas.
-Con un interes de ${interes.toFixed(2)}$.`)) {
-            document.getElementById('label').innerHTML = "CONFIRMO PAGO";
+    Valor de Cuota: ${(total / cuotas).toFixed(2)} $. En ${cuotas} cuotas.
+    Con un interes de ${interes.toFixed(2)}$.`)) {
+            //document.getElementById('label').innerHTML = "CONFIRMO PAGO";
         } else {
-            document.getElementById('label').innerHTML = "CANCELO EL PAGO";
+            //document.getElementById('label').innerHTML = "CANCELO EL PAGO";
             document.getElementById("Productos").value = 0;
             document.getElementById("cuotas").value = 0;
         }

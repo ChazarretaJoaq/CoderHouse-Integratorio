@@ -15,106 +15,29 @@
 <header>
     <div class="active">
         <nav class="navbar navbar-default   " data-bs-theme="dark">
-            <h1 style="color:royalblue;align-content: center;"> CALCULAR IVA EN PRODUCTOS</h1>
+            <h1 style="color:royalblue;align-content: center;"> Scaloneta Online</h1>
         </nav>
     </div>
 </header>
 
 <body>
     <div class="sidebar">
-        <form name="prcheckbox" id="formCheck">
-            <div class="d-flex left-content-between align-items-center">
-                <input type="checkbox" id="all"><label> TODOS </label>
-            </div>
-            <div class="d-flex left-content-between align-items-center">
-                <input type="checkbox" id="camiseta"><label>Camisetas</label>
-            </div>
-            <div class="d-flex left-content-between align-items-center">
-                <input type="checkbox" id="short"><label>Shorts</label>
-            </div>
-            <div class="d-flex left-content-between align-items-center">
-                <input type="checkbox" id="botines"><label>Botines</label>
-            </div>
-            <div class="d-flex left-content-between align-items-center">
-                <input type="checkbox" id="campera"><label>Camperas</label>
-            </div>
-            <div class="d-flex left-content-between align-items-center">
-                <input type="checkbox" id="medias"><label>Medias</label>
-            </div>
-            <button class=" btn-success" id="btn" type="button" onclick="filtarProductos()">Ocultar</button>
-        </form>
+        <select name="filtro" id="filtro">
+            <option value="all">Todos</option>
+            <option value="camiseta">camiseta</option>
+            <option value="short">short</option>
+            <option value="botines">botines</option>
+            <option value="campera">campera</option>
+            <option value="medias">medias</option>
+        </select>
     </div>
     <main>
 
         <div class="content" id="Categorias">
             <div class="card" style="align-items: baseline ;">
-                <div class="row">
-                    <div class="col active align-self-start">
-                        <div id="CAMISETA" class="card text-center" style="width: 15rem;">
-                            <img id="camisetaTitular" class="card-img-top" src="img/camiseta-argentina.jpg"
-                                alt="Card image cap">
-                            <p class="PRUEBA"> Camiseta Seleccion Argentina Titular. Messi</p>
-                        </div>
-                    </div>
-                    <div class="col active align-self-start">
-                        <div id="CAMISETA" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/seleccion-alternativa.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Camiseta Seleccion Argentina Suplente</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col align-self-start">
-                        <div id="SHORT" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/short seleccion argentina.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Short Seleccion Argentina Titular</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col align-self-start">
-                        <div id="SHORT" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/short alternativo.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p id="shortSeleccion" class="card-text">Short Seleccion Argentina Suplente</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col align-self-start">
-                        <div id="CAMPERA" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/campera-seleccion.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Campera Seleccion</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col align-self-start">
-                        <div id="CAMPERA" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/campera seleccion 2.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Campera Seleccion Reversible</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col align-self-start">
-                        <div id="MEDIAS" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/medias seleccion.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Medias Seleccion</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col align-self-start">
-                        <div id="BOTINES" class="card text-center" style="width: 15rem;">
-                            <img class="card-img-top" src="img/botines seleccion.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Botines</p>
-                            </div>
-                        </div>
-                    </div>
-
+                <div class="row" id="contenedor">
                 </div>
-                <div style="text-align: center; width: 90%;">
+                <div style="text-align: center; width: 100%;">
                     <br /><br /><br />
                     <label for="Productos">Seleccione el producto: </label>
                     <select name="Productos" id="Productos">
@@ -129,47 +52,39 @@
                         <option value="35000">Botines Adidas </option>
                     </select>
                     <div>
-                        <label for="Cuotas">Seleccione cantidad de cuotas: </label>
-                        <select name="cuotas" id="cuotas">
-                            <option id="vacio" value="0" selected>--------</option>
-                            <option id="select1" value="1">1 Cuota</option>
-                            <option id="select3" value="3">3 Cuotas</option>
-                            <option id="select6" value="6">6 Cuotas</option>
-                            <option id="select12" value="12">12 Cuotas</option>
-                        </select>
-
-                        <div>
-                            <label for="Cantidad">Seleccione cantidad: </label>
-                            <input for="Cantidad" type="number" id="Cantidad" min="1" max="5">
-                        </div>
-                        <button class="btn-success" type="button" onclick="agregarCarrito()">
-                            Agregar al Carrito</button>
-                        <button class="btn-success" type="button" onclick="realizarCompra()">
-                            Consultar precio
-                        </button>
-
+                        <br />
+                        <label for="Cantidad">Seleccione cantidad: </label>
+                        <input for="Cantidad" type="number" id="Cantidad" min="1" max="5">
                     </div>
-                    <div>
-                        <label id=" texto1"></label>
-                        <label id="label"></label><br />
-                        <label id="interes"></label>
-                    </div>
-                    <div style="text-align: center;  
+                    <br />
+                    <button class="btn-success" type="button" onclick="agregarCarrito()">
+                        Agregar al Carrito</button>
+                    <button class="btn-success" type="button" onclick="realizarCompra()">
+                        Consultar precio
+                    </button>
+                </div>
+                <div>
+                    <label id=" texto1"></label>
+                    <label id="label"></label><br />
+                    <label id="interes"></label>
+                </div>
+                <div style="text-align: center;  
                 width: 100%;">
-                        <form>
-                            <button class=" btn-success" type="button" onclick="mostrarCarrito()">
-                                Mostrar Carrito
-                            </button>
-                        </form>
-                        <div className="mostarCarrito">
-                            <label id="carrito"></label><br />
-                            <h1 id="total"></h1>
-                        </div>
+                    <form>
+                        <button class=" btn-success" type="button" onclick="mostrarCarrito()">
+                            Mostrar Carrito
+                        </button>
+                    </form>
+                    <div id="mostcarrito"></div>
+                    <div className="mostarCarrito">
+                        <label id="carrito"></label><br />
+                        <label id="total"></label>
                     </div>
                 </div>
+
             </div>
+        </div>
     </main>
-    <script src="inicio.js"></script>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
