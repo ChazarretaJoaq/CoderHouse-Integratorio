@@ -144,7 +144,20 @@ const mostrarCarrito = () => {
     mos_arreglo = JSON.parse(mos_arreglo);
     for (let i of mos_arreglo) {
         sumTotal += parseFloat(i.total)
-        pantallacarrito.innerHTML += `<br/> ${i.nombre}, $  ${i.total}   <button  class="btn-success" type="button">  Eliminar </button>`
+        pantallacarrito.innerHTML += `
+        <table>
+            <tr>
+                <th>NOMBRE DEL PRODUCTO</th>
+                <th> </th>
+                <th>PRECIO </th>
+            </tr>
+            <tr>
+                    <td>${i.nombre}</td>
+                    <td>    </td>
+                    <td>$ ${i.total}</td>
+                    <td> <button  class="btn-success" type="button">  Eliminar </button></td>
+            </tr>
+        </table>`
     }
     if (sumTotal > 0) {
         document.getElementById("total").innerHTML += `
