@@ -271,7 +271,7 @@ function finalizarCompra(e){
 
 }
 const compra_producto=() =>{
-    let formulario = document.getElementsByClassName("compra");
+    let formulario = document.getElementById("compra");
     console.log("LLEGO")
    formulario.innerHTML = `<h1>LLEGO </h1>`
 }
