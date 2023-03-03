@@ -201,21 +201,21 @@ const mostrarCarrito = () => {
   let sumTotal = 0;
   let mos_arreglo = localStorage.getItem("vect_product");
   let pantallacarrito = document.getElementById("carrito");
-  pantallacarrito.innerHTML="";
+  pantallacarrito.innerHTML = "";
   mos_arreglo = JSON.parse(mos_arreglo);
-  console.log(mos_arreglo.cantidad)
+  console.log(mos_arreglo.cantidad);
   let arrayprueba = [...mos_arreglo];
   for (let i of mos_arreglo) {
-      //console.log("PRUEBAAAA", arrayprueba)
-  let prueba = arrayprueba.reduce((valAnterior,valorActual,index,arrayprueba)=>{
-   // console.log("valAnterior.cantidad",valAnterior);    
-    // console.log("valorActual.cantidad",valorActual);
-    // console.log("index",index);
-    // console.log("array",arrayprueba);
-    return parseInt( valAnterior.cantidad )+ parseInt(valorActual.cantidad)
- 
-   });
-   console.log(prueba);
+    //console.log("PRUEBAAAA", arrayprueba)
+    //   let prueba = arrayprueba.reduce((valAnterior,valorActual,index,arrayprueba)=>{
+    //    // console.log("valAnterior.cantidad",valAnterior);
+    //     // console.log("valorActual.cantidad",valorActual);
+    //     // console.log("index",index);
+    //     // console.log("array",arrayprueba);
+    //     return parseInt( valAnterior.cantidad )+ parseInt(valorActual.cantidad)
+
+    //    });
+    //    console.log(prueba);
     sumTotal += parseFloat(i.total);
     pantallacarrito.innerHTML += `
     </br>
@@ -229,9 +229,14 @@ const mostrarCarrito = () => {
                     <td>${i.nombre}</td>
                     <td> ${i.cantidad}</td>
                     <td>$ ${i.total}</td>
-                    <td> <button  class="btn-success" type="button">  Eliminar </button></td>
+                    <td> <button  class="btn-success btn_eliminar" type="button">  Eliminar </button></td>
             </tr>
         </table>`;
+  }
+  let btn_borrar = document.querySelectorAll(".btn_eliminar");
+  console.log(btn_borrar);
+  for (let btn of btn_borrar) {
+    btn.addEventListener("click", borrar_producto);
   }
   if (sumTotal > 0) {
 
@@ -249,11 +254,44 @@ const mostrarCarrito = () => {
         </div>
         <div class="mostcarrito">
         <h1>TOTAL A PAGAR:    $ ${parseFloat(sumTotal)}</h1>
-        <button class="btn-success" type="button"> Finalizar Compra </button> 
+        <button class="btn-success btn_finalizarcompra" type="button"> Finalizar Compra </button> 
         </div>
         `;
+
   }
+  let btn_finalizarcompra = document.querySelectorAll(".btn_finalizarcompra")
+  for (let btnf of btn_finalizarcompra){
+    btnf.addEventListener("click", finalizarCompra );
+  }
+
 };
+
+function finalizarCompra(e){
+    location.href= `file:///C:/Users/Usuario/Documents/Coderhouse/CoderHouse-Integratorio/compra.html`;
+
+}
+const compra_producto=() =>{
+    let formulario = document.getElementsByClassName("compra");
+    console.log("LLEGO")
+   formulario.innerHTML = `<h1>LLEGO </h1>`
+}
+function borrar_producto(e) {
+  console.log("BORRAR ESTE ELEMENTO: ", e.target);
+  let abuelo = e.target.parentNode.parentNode;
+    console.log(abuelo);
+  // let producto_eliminar = abuelo.querySelector("p").textContent;
+//   function eliminar_producto(producto) {
+//     return producto.nombre != producto_eliminar;
+//   }
+//   let resultado_filter = carrito.filter(eliminar_producto);
+
+//   carrito = resultado_filter;
+//   // console.log( carrito );
+
+  mostrarCarrito();
+  //abuelo.remove();
+}
+
 const realizarCompra = () => {
   document.getElementById("label").innerHTML = "";
 
