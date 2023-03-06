@@ -130,7 +130,7 @@ function obtenerCuotas() {
 }
 let filtroSelect = document.querySelector("#filtro");
 let contenedor = document.getElementById("contenedor");
-
+if(filtroSelect){
 filtroSelect.addEventListener("change", () => {
   if (filtroSelect.value == "all") {
     mostrarProductos(arrayDetalles);
@@ -141,10 +141,11 @@ filtroSelect.addEventListener("change", () => {
     console.log(arrayFiltrado);
     mostrarProductos(arrayFiltrado);
   }
-});
+});}
 
 const mostrarProductos = (array) => {
-  contenedor.innerHTML = "";
+  if (contenedor)
+{  contenedor.innerHTML = "";
   array.forEach((prod) => {
     let div = document.createElement("div");
     div.className = "col active align-self-start";
@@ -156,7 +157,7 @@ const mostrarProductos = (array) => {
             
             `;
     contenedor.appendChild(div);
-  });
+  });}
 };
 
 mostrarProductos(arrayDetalles);
@@ -193,7 +194,7 @@ const agregarCarrito = () => {
   arreglo_json = JSON.stringify(unicos);
   localStorage.setItem("vect_product", arreglo_json);
 };
-
+let btn_finalizarcompra;
 const mostrarCarrito = () => {
   document.getElementById("label").innerHTML = "";
   document.getElementById("carrito").innerHTML = "";
@@ -254,21 +255,52 @@ const mostrarCarrito = () => {
         </div>
         <div class="mostcarrito">
         <h1>TOTAL A PAGAR:    $ ${parseFloat(sumTotal)}</h1>
-        <button class="btn-success btn_finalizarcompra" type="button"> Finalizar Compra </button> 
+        <a href="file:///C:/Users/Usuario/Documents/Coderhouse/CoderHouse-Integratorio/compra.html">
+        <button  class="btn-success" type="button"> Finalizar Compra </button> 
+        </a>
         </div>
         `;
 
   }
-  let btn_finalizarcompra = document.querySelectorAll(".btn_finalizarcompra")
-  for (let btnf of btn_finalizarcompra){
-    btnf.addEventListener("click", finalizarCompra );
-  }
+//   btn_finalizarcompra = document.querySelectorAll(".btn_finalizarcompra");
+// console.log(btn_finalizarcompra)
+// for (let btnf of btn_finalizarcompra){
+//   btnf.addEventListener("click", finalizarCompra );
+// };
 
 };
 
-function finalizarCompra(e){
-    location.href= `file:///C:/Users/Usuario/Documents/Coderhouse/CoderHouse-Integratorio/compra.html`;
+let inicio = document.getElementById("Inicio");
+if(inicio){
+  inicio.innerHTML=`
+  </br>
+  <form action="/my-handling-form-page" method="post">
+  <ul>
+   <li>
+     <label for="name">Nombre:</label>
+     <input type="text" id="name" name="user_name">
+   </li>
+   <li>
+     <label for="mail">Correo electrónico:</label>
+     <input type="email" id="mail" name="user_mail">
+   </li>
+   <li>
+     <label for="msg">Mensaje:</label>
+     <textarea id="msg" name="user_message"></textarea>
+   </li>
+  </ul>
+  <li class="button">
+  <button type="submit">Envíe su mensaje</button>
+</li>
+ </form> 
+ </br> `;
+}
 
+function finalizarCompra(e){
+  // location.href('../CoderHouse-Integratorio/compra.html') ;
+   let inicio = document.getElementById("Inicio");
+  // console.log("BORRAR ESTE ELEMENTO: ", e.target);
+   inicio.innerHTML="HOLA"
 }
 const compra_producto=() =>{
     let formulario = document.getElementById("compra");
