@@ -156,7 +156,6 @@ const mostrarProductos = (array) => {
                                 <p class="PRUEBA">${prod.nombre}</p>
                                 <p class="PRUEBA">$ ${prod.precio}  </p>
                             </div>
-            
             `;
       contenedor.appendChild(div);
     });
@@ -197,7 +196,7 @@ const agregarCarrito = () => {
   arreglo_json = JSON.stringify(unicos);
   localStorage.setItem("vect_product", arreglo_json);
 };
-let btn_finalizarcompra;
+
 const mostrarCarrito = () => {
   document.getElementById("label").innerHTML = "";
   document.getElementById("carrito").innerHTML = "";
@@ -207,7 +206,6 @@ const mostrarCarrito = () => {
   let pantallacarrito = document.getElementById("carrito");
   pantallacarrito.innerHTML = "";
   mos_arreglo = JSON.parse(mos_arreglo);
-  let arrayprueba = [...mos_arreglo];
   for (let i of mos_arreglo) {
     sumTotal += parseFloat(i.total);
     pantallacarrito.innerHTML += `
@@ -226,6 +224,7 @@ const mostrarCarrito = () => {
             </tr>
         </table>`;
   }
+
   let btn_borrar = document.querySelectorAll(".btn_eliminar");
   console.log(btn_borrar);
   for (let btn of btn_borrar) {
@@ -233,17 +232,6 @@ const mostrarCarrito = () => {
   }
   if (sumTotal > 0) {
     document.getElementById("total").innerHTML += `
-        <div class="mostcarrito">
-        </br>
-        <label for="Cuotas">Seleccione cantidad de cuotas: </label>
-        <select class="mostcarrito" name="cuotas" id="cuotas">
-            <option id="vacio" value="0" selected>--------</option>
-            <option id="select1" value="1">1 Cuota</option>
-            <option id="select3" value="3">3 Cuotas</option>
-            <option id="select6" value="6">6 Cuotas</option>
-            <option id="select12" value="12">12 Cuotas</option>
-        </select>
-        </div>
         <div >
         <h1>TOTAL A PAGAR:    $ ${parseFloat(sumTotal)}</h1>
         <a href="file:///C:/Users/Usuario/Documents/Coderhouse/CoderHouse-Integratorio/compra.html">
@@ -283,6 +271,17 @@ if (inicio) {
             <textarea id="msg" name="user_message"></textarea>
           </li>
           <li class="button">
+          <div class="mostcarrito">
+          </br>
+          <label for="Cuotas">Seleccione cantidad de cuotas: </label>
+          <select class="mostcarrito" name="cuotas" id="cuotas">
+              <option id="vacio" value="0" selected>--------</option>
+              <option id="select1" value="1">1 Cuota</option>
+              <option id="select3" value="3">3 Cuotas</option>
+              <option id="select6" value="6">6 Cuotas</option>
+              <option id="select12" value="12">12 Cuotas</option>
+          </select>
+          </div>
             <button class="btn-success" type="submit">Finalizar Compra</button>
           </li>
         </ul>
@@ -293,12 +292,6 @@ if (inicio) {
         `;
 }
 
-function finalizarCompra(e) {
-  // location.href('../CoderHouse-Integratorio/compra.html') ;
-  let inicio = document.getElementById("Inicio");
-  // console.log("BORRAR ESTE ELEMENTO: ", e.target);
-  inicio.innerHTML = "HOLA";
-}
 const compra_producto = () => {
   let formulario = document.getElementById("compra");
   console.log("LLEGO");
