@@ -130,34 +130,37 @@ function obtenerCuotas() {
 }
 let filtroSelect = document.querySelector("#filtro");
 let contenedor = document.getElementById("contenedor");
-if(filtroSelect){
-filtroSelect.addEventListener("change", () => {
-  if (filtroSelect.value == "all") {
-    mostrarProductos(arrayDetalles);
-  } else {
-    let arrayFiltrado = arrayDetalles.filter(
-      (prod) => prod.categoria.toLowerCase() == filtroSelect.value
-    );
-    console.log(arrayFiltrado);
-    mostrarProductos(arrayFiltrado);
-  }
-});}
+if (filtroSelect) {
+  filtroSelect.addEventListener("change", () => {
+    if (filtroSelect.value == "all") {
+      mostrarProductos(arrayDetalles);
+    } else {
+      let arrayFiltrado = arrayDetalles.filter(
+        (prod) => prod.categoria.toLowerCase() == filtroSelect.value
+      );
+      console.log(arrayFiltrado);
+      mostrarProductos(arrayFiltrado);
+    }
+  });
+}
 
 const mostrarProductos = (array) => {
-  if (contenedor)
-{  contenedor.innerHTML = "";
-  array.forEach((prod) => {
-    let div = document.createElement("div");
-    div.className = "col active align-self-start";
-    div.innerHTML = `<div id="CAMISETA" class="card text-center" style="width: 15rem;">
+  if (contenedor) {
+    contenedor.innerHTML = "";
+    array.forEach((prod) => {
+      let div = document.createElement("div");
+      div.className = "col active align-self-start";
+      div.innerHTML = `<div id="CAMISETA" class="card text-center" style="width: 15rem;">
                                 <img id="camisetaTitular" class="card-img-top" src=${prod.img}
                                     alt="Card image cap">
                                 <p class="PRUEBA">${prod.nombre}</p>
+                                <p class="PRUEBA">$ ${prod.precio}  </p>
                             </div>
             
             `;
-    contenedor.appendChild(div);
-  });}
+      contenedor.appendChild(div);
+    });
+  }
 };
 
 mostrarProductos(arrayDetalles);
@@ -204,19 +207,8 @@ const mostrarCarrito = () => {
   let pantallacarrito = document.getElementById("carrito");
   pantallacarrito.innerHTML = "";
   mos_arreglo = JSON.parse(mos_arreglo);
-  console.log(mos_arreglo.cantidad);
   let arrayprueba = [...mos_arreglo];
   for (let i of mos_arreglo) {
-    //console.log("PRUEBAAAA", arrayprueba)
-    //   let prueba = arrayprueba.reduce((valAnterior,valorActual,index,arrayprueba)=>{
-    //    // console.log("valAnterior.cantidad",valAnterior);
-    //     // console.log("valorActual.cantidad",valorActual);
-    //     // console.log("index",index);
-    //     // console.log("array",arrayprueba);
-    //     return parseInt( valAnterior.cantidad )+ parseInt(valorActual.cantidad)
-
-    //    });
-    //    console.log(prueba);
     sumTotal += parseFloat(i.total);
     pantallacarrito.innerHTML += `
     </br>
@@ -240,7 +232,6 @@ const mostrarCarrito = () => {
     btn.addEventListener("click", borrar_producto);
   }
   if (sumTotal > 0) {
-
     document.getElementById("total").innerHTML += `
         <div class="mostcarrito">
         </br>
@@ -253,72 +244,78 @@ const mostrarCarrito = () => {
             <option id="select12" value="12">12 Cuotas</option>
         </select>
         </div>
-        <div class="mostcarrito">
+        <div >
         <h1>TOTAL A PAGAR:    $ ${parseFloat(sumTotal)}</h1>
         <a href="file:///C:/Users/Usuario/Documents/Coderhouse/CoderHouse-Integratorio/compra.html">
         <button  class="btn-success" type="button"> Finalizar Compra </button> 
         </a>
         </div>
         `;
-
   }
-//   btn_finalizarcompra = document.querySelectorAll(".btn_finalizarcompra");
-// console.log(btn_finalizarcompra)
-// for (let btnf of btn_finalizarcompra){
-//   btnf.addEventListener("click", finalizarCompra );
-// };
-
 };
 
+// pantalla de compra 
 let inicio = document.getElementById("Inicio");
-if(inicio){
-  inicio.innerHTML=`
+if (inicio) {
+  let mos_arreglo = localStorage.getItem("vect_product");
+  mos_arreglo = JSON.parse(mos_arreglo);
+  console.log(mos_arreglo);
+  inicio.innerHTML = `
   </br>
-  <form action="/my-handling-form-page" method="post">
-  <ul>
-   <li>
-     <label for="name">Nombre:</label>
-     <input type="text" id="name" name="user_name">
-   </li>
-   <li>
-     <label for="mail">Correo electrónico:</label>
-     <input type="email" id="mail" name="user_mail">
-   </li>
-   <li>
-     <label for="msg">Mensaje:</label>
-     <textarea id="msg" name="user_message"></textarea>
-   </li>
-  </ul>
-  <li class="button">
-  <button type="submit">Envíe su mensaje</button>
-</li>
- </form> 
- </br> `;
+  <div class="row">
+    <div class="column">
+      <form class="form2" >
+        <ul>
+          <li>
+            <label class="letra" for="name">Nombre:</label>
+            <input type="text" id="name" name="user_name">
+          </li>   
+          <li>
+            <label class="letra" for="name">Apellido:</label>
+            <input type="text" id="apellido" name="user_lastname">
+          </li>
+          <li>
+            <label  class="letra" for="mail">Correo electrónico:</label>
+            <input type="email" id="mail" name="user_mail">
+          </li>
+          <li>
+            <label class="letra" for="msg">Mensaje:</label>
+            <textarea id="msg" name="user_message"></textarea>
+          </li>
+          <li class="button">
+            <button class="btn-success" type="submit">Finalizar Compra</button>
+          </li>
+        </ul>
+      </form> 
+      </div>
+    </div>
+        </br> 
+        `;
 }
 
-function finalizarCompra(e){
+function finalizarCompra(e) {
   // location.href('../CoderHouse-Integratorio/compra.html') ;
-   let inicio = document.getElementById("Inicio");
+  let inicio = document.getElementById("Inicio");
   // console.log("BORRAR ESTE ELEMENTO: ", e.target);
-   inicio.innerHTML="HOLA"
+  inicio.innerHTML = "HOLA";
 }
-const compra_producto=() =>{
-    let formulario = document.getElementById("compra");
-    console.log("LLEGO")
-   formulario.innerHTML = `<h1>LLEGO </h1>`
-}
+const compra_producto = () => {
+  let formulario = document.getElementById("compra");
+  console.log("LLEGO");
+  formulario.innerHTML = `<h1>LLEGO </h1>`;
+};
 function borrar_producto(e) {
   console.log("BORRAR ESTE ELEMENTO: ", e.target);
   let abuelo = e.target.parentNode.parentNode;
-    console.log(abuelo);
+  console.log(abuelo);
   // let producto_eliminar = abuelo.querySelector("p").textContent;
-//   function eliminar_producto(producto) {
-//     return producto.nombre != producto_eliminar;
-//   }
-//   let resultado_filter = carrito.filter(eliminar_producto);
+  //   function eliminar_producto(producto) {
+  //     return producto.nombre != producto_eliminar;
+  //   }
+  //   let resultado_filter = carrito.filter(eliminar_producto);
 
-//   carrito = resultado_filter;
-//   // console.log( carrito );
+  //   carrito = resultado_filter;
+  //   // console.log( carrito );
 
   mostrarCarrito();
   //abuelo.remove();

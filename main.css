@@ -75,7 +75,7 @@ table, td, th {
     width: 100%;
     border-collapse: collapse;
   }
-  form {
+  .form2 {
     /* Centrar el formulario en la página */
     margin: 0 auto;
     width: 400px;
@@ -94,8 +94,11 @@ table, td, th {
   form li + li {
     margin-top: 1em;
   }
-  
-  label {
+  .letra {
+    color: white;
+    width: fit-content;
+  }
+  .label2 {
     /* Tamaño y alineación uniforme */
     display: inline-block;
     width: 90px;
@@ -140,3 +143,34 @@ table, td, th {
        entre las etiquetas y sus campos de texto */
     margin-left: .5em;
   }
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 10%; /* Should be removed. Only for demonstration */
+    min-height: 100%;
+    background-color: #555;
+  }
+  /* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+input[type=text],[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #3CBC8D;
+  color: white;
+}
+textarea {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5em;  
+  background-color: #3CBC8D;
+  color: white;
+  font-family: 'Roboto';
+}
