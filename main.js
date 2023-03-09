@@ -270,18 +270,19 @@ if (inicio) {
             <label class="letra" for="msg">Mensaje:</label>
             <textarea id="msg" name="user_message"></textarea>
           </li>
-          <li class="button">
           <div class="mostcarrito">
           </br>
-          <label for="Cuotas">Seleccione cantidad de cuotas: </label>
+          <label class="letra" for="Cuotas">Seleccione cantidad de cuotas: </label>
           <select class="mostcarrito" name="cuotas" id="cuotas">
-              <option id="vacio" value="0" selected>--------</option>
-              <option id="select1" value="1">1 Cuota</option>
-              <option id="select3" value="3">3 Cuotas</option>
-              <option id="select6" value="6">6 Cuotas</option>
-              <option id="select12" value="12">12 Cuotas</option>
+          <option id="vacio" value="0" selected>--------</option>
+          <option id="select1" value="1">1 Cuota</option>
+          <option id="select3" value="3">3 Cuotas</option>
+          <option id="select6" value="6">6 Cuotas</option>
+          <option id="select12" value="12">12 Cuotas</option>
           </select>
           </div>
+          </br>
+          <li class="button">
             <button class="btn-success" type="submit">Finalizar Compra</button>
           </li>
         </ul>
