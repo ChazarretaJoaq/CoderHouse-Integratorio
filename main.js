@@ -15,6 +15,14 @@ class carritoTotal {
     this.interes = interes;
   }
 }
+
+fetch("productos.json")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+    .catch(e => {
+      console.log(e);
+  });;
+
 let arrayDetalles = [
   {
     id: 1,
@@ -242,7 +250,7 @@ const mostrarCarrito = () => {
   }
 };
 
-// pantalla de compra 
+// pantalla de compra
 let inicio = document.getElementById("Inicio");
 if (inicio) {
   let mos_arreglo = localStorage.getItem("vect_product");
