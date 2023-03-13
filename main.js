@@ -15,130 +15,10 @@ class carritoTotal {
     this.interes = interes;
   }
 }
-
-fetch("productos.json")
-  .then((response) => response.json())
-  .then((data) => console.log(data))
-    .catch(e => {
-      console.log(e);
-  });;
-
-let arrayDetalles = [
-  {
-    id: 1,
-    nombre: "Camiseta Titular Seleccion",
-    categoria: "Camiseta",
-    detalle: "Camiseta Titular Seleccion con las 3 estrellas",
-    precio: 19000,
-    img: "img/camiseta-argentina.jpg",
-  },
-  {
-    id: 2,
-    nombre: "Camiseta Alternativa Seleccion",
-    categoria: "Camiseta",
-    detalle: "Camiseta Aleternativa Seleccion color violeta con detalles",
-    precio: 17000,
-    img: "img/seleccion-alternativa.jpg",
-  },
-  {
-    id: 3,
-    nombre: "Short Titular Seleccion",
-    categoria: "Short",
-    detalle: "Short Titular Seleccion color negro",
-    precio: 15000,
-    img: "img/short_seleccion_argentina.jpg",
-  },
-  {
-    id: 4,
-    nombre: "Short Alternativo Seleccion",
-    categoria: "Short",
-    detalle: "Short Alternativa Seleccion color violeta",
-    precio: 15000,
-    img: "img/short_alternativo.jpg",
-  },
-  {
-    id: 5,
-    nombre: "Campera Seleccion",
-    categoria: "Campera",
-    detalle: "Campera Seleccion con capucha para lluvia",
-    precio: 26000,
-    img: "img/campera-seleccion.jpg",
-  },
-  {
-    id: 6,
-    nombre: "Campera Seleccion Reversible",
-    categoria: "Campera",
-    detalle:
-      "Campera Reversible Seleccion de un lado celeste y del otro violeta",
-    precio: 32000,
-    img: "img/campera_seleccion_2.jpg",
-  },
-  {
-    id: 7,
-    nombre: "Medias Seleccion Argentina",
-    categoria: "Medias",
-    detalle: "Medias Seleccion, blancas titulares",
-    precio: 12000,
-    img: "img/medias_seleccion.jpg",
-  },
-  {
-    id: 8,
-    nombre: "Botines Adidas",
-    categoria: "Botines",
-    detalle: "Botines Adidas, ultima generacion para futbol sala",
-    precio: 35000,
-    img: "img/botines_seleccion.jpg",
-  },
-];
-
 let vecProduct = [];
-
-function calcularIva(valor) {
-  return valor * 1.21;
-}
-function calcularCuotas(valor, cuotas) {
-  let total;
-  let int;
-  if (cuotas == 1) {
-    int = 0;
-    total = valor;
-  } else if (cuotas == 3) {
-    int = 1.15;
-    total = valor * int;
-  } else if (cuotas == 6) {
-    int = 1.2;
-    total = valor * int;
-  } else if (cuotas == 12) {
-    int = 1.25;
-    total = valor * int;
-  }
-  if (int > 0) {
-    return {
-      total: total,
-      interes: valor * (int - 1).toFixed(2),
-    };
-  } else {
-    return {
-      total: total,
-      interes: valor,
-    };
-  }
-}
-function obtenerValorProduct() {
-  return (valor1 = document.getElementById("Productos").value);
-}
-function obtenerCantidadProduct() {
-  return (cantidad = document.getElementById("Cantidad").value);
-}
-function obtenerIvaProduct(valor, cantidad) {
-  return (iva = calcularIva(parseFloat(valor * cantidad)));
-}
-function obtenerCuotas() {
-  return (cuotas = document.getElementById("cuotas").value);
-}
 let filtroSelect = document.querySelector("#filtro");
 let contenedor = document.getElementById("contenedor");
-if (filtroSelect) {
+cargaProd();
   filtroSelect.addEventListener("change", () => {
     if (filtroSelect.value == "all") {
       mostrarProductos(arrayDetalles);
@@ -146,14 +26,11 @@ if (filtroSelect) {
       let arrayFiltrado = arrayDetalles.filter(
         (prod) => prod.categoria.toLowerCase() == filtroSelect.value
       );
-      console.log(arrayFiltrado);
       mostrarProductos(arrayFiltrado);
     }
   });
-}
 
 const mostrarProductos = (array) => {
-  if (contenedor) {
     contenedor.innerHTML = "";
     array.forEach((prod) => {
       let div = document.createElement("div");
@@ -167,8 +44,7 @@ const mostrarProductos = (array) => {
             `;
       contenedor.appendChild(div);
     });
-  }
-};
+  };
 
 mostrarProductos(arrayDetalles);
 const agregarCarrito = () => {
@@ -242,7 +118,7 @@ const mostrarCarrito = () => {
     document.getElementById("total").innerHTML += `
         <div >
         <h1>TOTAL A PAGAR:    $ ${parseFloat(sumTotal)}</h1>
-        <a href="file:///C:/Users/Usuario/Documents/Coderhouse/CoderHouse-Integratorio/compra.html">
+        <a href="compra.html">
         <button  class="btn-success" type="button"> Finalizar Compra </button> 
         </a>
         </div>
