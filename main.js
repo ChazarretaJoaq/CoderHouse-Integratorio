@@ -58,7 +58,7 @@ const agregarCarrito = () => {
   );
   // obtener precios
   let prodValue = obtenerValorProduct();
-  let cantidad = obtenerCantidadProduct();
+  let cantidad = 1;
   let totalIva = calcularIva(prodValue) * cantidad;
   console.log(totalIva);
   if (cantidad > 0 && totalIva > 0) {
@@ -96,6 +96,7 @@ const mostrarCarrito = () => {
     sumTotal += parseFloat(i.total);
     pantallacarrito.innerHTML += `
     </br>
+    <h2>Carrito</h2>
         <table>
             <tr>
                 <th>NOMBRE DEL PRODUCTO</th>
