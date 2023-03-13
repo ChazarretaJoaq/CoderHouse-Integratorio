@@ -19,6 +19,7 @@ let vecProduct = [];
 let filtroSelect = document.querySelector("#filtro");
 let contenedor = document.getElementById("contenedor");
 cargaProd();
+if(filtroSelect){
   filtroSelect.addEventListener("change", () => {
     if (filtroSelect.value == "all") {
       mostrarProductos(arrayDetalles);
@@ -28,10 +29,11 @@ cargaProd();
       );
       mostrarProductos(arrayFiltrado);
     }
-  });
+  });}
 
 const mostrarProductos = (array) => {
-    contenedor.innerHTML = "";
+ if (contenedor){
+  contenedor.innerHTML = "";
     array.forEach((prod) => {
       let div = document.createElement("div");
       div.className = "col active align-self-start";
@@ -45,7 +47,7 @@ const mostrarProductos = (array) => {
       contenedor.appendChild(div);
     });
   };
-
+}
 mostrarProductos(arrayDetalles);
 const agregarCarrito = () => {
   let label = document.getElementById("label");
