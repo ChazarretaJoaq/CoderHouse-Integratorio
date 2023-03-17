@@ -84,36 +84,24 @@ const agregarCarrito = () => {
 };
 
 const mostrarCarrito = () => {
-  document.getElementById("label").innerHTML = "";
-  document.getElementById("carrito").innerHTML = "";
   document.getElementById("total").innerHTML = "";
   let sumTotal = 0;
   let mos_arreglo = localStorage.getItem("vect_product");
-  let pantallacarrito = document.getElementById("carrito");
+  let pantallacarrito = document.getElementById("tbody");
   pantallacarrito.innerHTML = "";
   mos_arreglo = JSON.parse(mos_arreglo);
   for (let i of mos_arreglo) {
     sumTotal += parseFloat(i.total);
     pantallacarrito.innerHTML += `
-    </br>
-    <h2>Carrito</h2>
-        <table>
-            <tr>
-                <th>NOMBRE DEL PRODUCTO</th>
-                <th>CANTIDAD </th>
-                <th>PRECIO </th>
-            </tr>
             <tr>
                     <td>${i.nombre}</td>
                     <td> ${i.cantidad}</td>
                     <td>$ ${i.total}</td>
-                    <td> <button  class="btn-success btn_eliminar" type="button">  Eliminar </button></td>
-            </tr>
-        </table>`;
+                    <td> <button  class="btn-danger btn_eliminar" type="button">  Eliminar </button></td>
+            </tr>`;
   }
 
   let btn_borrar = document.querySelectorAll(".btn_eliminar");
-  console.log(btn_borrar);
   for (let btn of btn_borrar) {
     btn.addEventListener("click", borrar_producto);
   }
@@ -124,7 +112,7 @@ const mostrarCarrito = () => {
         <a href="compra.html">
         <button  class="btn-success" type="button"> Finalizar Compra </button> 
         </a>
-        </div>
+        </div></br>
         `;
   }
 };
@@ -134,12 +122,11 @@ let inicio = document.getElementById("Inicio");
 if (inicio) {
   let mos_arreglo = localStorage.getItem("vect_product");
   mos_arreglo = JSON.parse(mos_arreglo);
-  console.log(mos_arreglo);
+  console.log(mos_arreglo)
+  
   inicio.innerHTML = `
   </br>
-  <div class="row">
-    <div class="column">
-      <form class="form2" >
+    <form>
         <ul>
           <li>
             <label class="letra" for="name">Nombre:</label>
@@ -157,28 +144,31 @@ if (inicio) {
             <label class="letra" for="msg">Mensaje:</label>
             <textarea id="msg" name="user_message"></textarea>
           </li>
-          <div class="mostcarrito">
-          </br>
-          <label class="letra" for="Cuotas">Seleccione cantidad de cuotas: </label>
-          <select class="mostcarrito" name="cuotas" id="cuotas">
-          <option id="vacio" value="0" selected>--------</option>
-          <option id="select1" value="1">1 Cuota</option>
-          <option id="select3" value="3">3 Cuotas</option>
-          <option id="select6" value="6">6 Cuotas</option>
-          <option id="select12" value="12">12 Cuotas</option>
-          </select>
-          </div>
-          </br>
-          <li class="button">
-            <button class="btn-success" type="submit">Finalizar Compra</button>
-          </li>
-        </ul>
-      </form> 
-      </div>
-    </div>
-        </br> 
+               </form> 
         `;
+        // SEGUNDO DIV
+      
+        let pantallacarrito = document.getElementById("tbody");
+        let total = document.getElementById("total");
+        total.innerHTML="";
+        let sumTotal=0;
+        pantallacarrito.innerHTML = "";
+        for (let i of mos_arreglo) {
+          sumTotal += parseFloat(i.total);
+          pantallacarrito.innerHTML += `
+                  <tr>
+                          <td>${i.nombre}</td>
+                          <td> ${i.cantidad}</td>
+                          <td>$ ${i.total}</td>
+                          <td> <button  class="btn-danger btn_eliminar" type="button">  Eliminar </button></td>
+                  
+                  </tr>
+            `;
+
+        }
+        total.innerHTML=`PRECIO TOTAL: $${sumTotal}`
 }
+
 
 const compra_producto = () => {
   let formulario = document.getElementById("compra");

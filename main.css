@@ -4,12 +4,6 @@ main {
 
 }
 
-table {
-    --bs-table-color: var(--bs-gray-600);
-    --bs-table-bg: var(--bs-gray-100);
-    --bs-table-border-color: transparent;
-}
-
 .sidebar {
     margin: 0;
     padding: 0;
@@ -65,16 +59,26 @@ div.content {
         float: none;
     }
 }
-table, td, th {
+table {
     border: 1px solid;
     height: 50px;
     vertical-align: bottom;
-  }
-  
-  table {
     width: 100%;
+    border-collapse: collapse;   
+     background-color: dimgray;
+    font-size: 16px;
     border-collapse: collapse;
+    --bs-table-color: var(--bs-gray-600);
+    --bs-table-bg: var(--bs-gray-100);
+    --bs-table-border-color: transparent;
   }
+  th{
+    font-style: oblique;
+  }
+  td{
+    font-style: normal;
+  }
+   
   .form2 {
     /* Centrar el formulario en la página */
     margin: 0 auto;

@@ -10,7 +10,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="main.css">
 </head>
 <header>
     <div class="active">
@@ -19,7 +19,6 @@
         </nav>
     </div>
 </header>
-
 <body>
     <div class="sidebar">
         <select name="filtro" id="filtro">
@@ -32,7 +31,6 @@
         </select>
     </div>
     <main>
-
         <div class="content" id="Categorias">
             <div class="card" style="align-items: baseline ;">
                 <div class="row" id="contenedor">
@@ -51,13 +49,12 @@
                         <option value="12000">Medias Seleccion Argentina </option>
                         <option value="35000">Botines Adidas </option>
                     </select>
-                    <div>
+                    <!-- <div>
                         <br />
-                        <!-- <label for="Cantidad">Seleccione cantidad: </label>
-                        <input for="Cantidad" type="number" id="Cantidad" value="1" min="1" max="5"> -->
-                    </div>
-                    <br />
-                    <button class="btn-success" type="button" onclick="agregarCarrito()">
+                        <label for="Cantidad">Seleccione cantidad: </label>
+                        <input for="Cantidad" type="number" id="Cantidad" value="1" min="1" max="5"> 
+                    </div> -->
+                    <button class="btn-info" type="button" onclick="agregarCarrito()">
                         Agregar al Carrito</button>
                     <!-- <button class="btn-success" type="button" onclick="realizarCompra()">
                         Consultar precio
@@ -71,13 +68,24 @@
                 <div style="text-align: center;  
                 width: 100%;">
                     <form>
-                        <button class=" btn-success" type="button" onclick="mostrarCarrito()">
-                            Mostrar Carrito
+                        <button class=" btn-dark" type="button" onclick="mostrarCarrito()">
+                            Actualizar Carrito
                         </button>
                     </form>
                     <div id="mostcarrito"></div>
                     <div className="mostarCarrito">
-                        
+                    </br>
+                        <table class="table-black">
+                            <tr class="table-primary">
+                                <th>NOMBRE DEL PRODUCTO</th>
+                                <th>CANTIDAD </th>
+                                <th>PRECIO </th>
+                                <th></th>
+                            </tr>
+                            <tbody id="tbody">
+
+                            </tbody>
+                        </table>
                         <label id="carrito"></label><br />
                         <label id="total"></label>
                     </div>
@@ -92,10 +100,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
-</body>
-<footer>
-    <p style="text-align: center;">About</p>
-</footer>
+    </body>
 
 </html>

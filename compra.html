@@ -1,35 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>compra scaloneta</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css">
-</head>
-<header>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <header>
     <div class="active">
-        <nav class="navbar navbar-default   " data-bs-theme="dark">
-            <h1 style="color:royalblue;align-content: center;"> Scaloneta Online</h1>
-        </nav>
+      <nav class="navbar navbar-default" data-bs-theme="dark">
+        <h1 style="color: royalblue; align-content: center">
+          Scaloneta Online
+        </h1>
+      </nav>
     </div>
-</header>
-<body>
+  </header>
+  <body>
     <main>
-        <div id="Inicio">
-
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div id="Inicio"></div>
+            
+          </div>
         </div>
+        <div class="col-sm">
+          <label style="text-align: center;" class="letra"> CARRITO DE COMPRA</label>
+        </div>
+
+      <table class="table-black">
+        <tr class="table-primary">
+            <th>NOMBRE DEL PRODUCTO</th>
+            <th>CANTIDAD </th>
+            <th>PRECIO </th>
+            <th></th>
+        </tr>
+        <tbody id="tbody">
+        </tbody>
+    </table>      
+    <h2 id="total" > </h2>
+        <div class="mostcarrito" style="text-align: center;">
+            </br>
+            <label class="letra" for="Cuotas">Seleccione cantidad de cuotas: </label>
+            <select class="mostcarrito" name="cuotas" id="cuotas">
+                <option id="vacio" value="0" selected>--------</option>
+                <option id="select1" value="1">1 Cuota</option>
+                <option id="select3" value="3">3 Cuotas</option>
+                <option id="select6" value="6">6 Cuotas</option>
+                <option id="select12" value="12">12 Cuotas</option>
+            </select>
+        </div>
+    </br>
+        <li class="button">
+            <div style="text-align: center;">
+                <button class="btn-success" type="submit">Finalizar Compra</button>
+
+            </div>
+        </li>
+        </ul>
+</div>
+      </div>
     </main>
     <script src="data.js"></script>
     <script src="funciones.js"></script>
     <script src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
