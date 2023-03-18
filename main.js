@@ -255,6 +255,7 @@ if (inicio) {
         let total = document.getElementById("Total").innerHTML;
         console.log(total)
         console.log(event.currentTarget.value);
+        console.log(i.total)
         //  console.log(parseFloat(total.slice(1)) * event.target.value);
       });
     });
