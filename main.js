@@ -246,8 +246,14 @@ if (inicio) {
                   
                   </tr>
             `;
+            const cantidades = document.querySelector(".Cantidad");
+            cantidades.forEach(cantidad => {
+              cantidad.addEventListener('change', (event) => {
+                console.log(event.target.value);
+              });
+            });
 
-  }
+  } 
   total.innerHTML = `PRECIO TOTAL: $${sumTotal}`;
 }
 
