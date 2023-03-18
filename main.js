@@ -98,13 +98,8 @@ const mostrarCarrito = () => {
                     <td>${i.nombre}</td>
                     <td> ${i.cantidad}</td>
                     <td>$ ${i.total}</td>
-                    <td> <button  class="btn-danger btn_eliminar" type="button">  Eliminar </button></td>
+                    
             </tr>`;
-  }
-
-  let btn_borrar = document.querySelectorAll(".btn_eliminar");
-  for (let btn of btn_borrar) {
-    btn.addEventListener("click", borrar_producto);
   }
   if (sumTotal > 0) {
     document.getElementById("total").innerHTML += `
@@ -115,18 +110,22 @@ const mostrarCarrito = () => {
         </a>
         </div></br>
         `;
-  }
-};
+      }
+    };
+    
+    // pantalla de compra
+    let inicio = document.getElementById("Inicio");
+    let total = document.getElementById("total");
+    let sumTotal = 0;
+    if (inicio) {
+      let mos_arreglo = localStorage.getItem("vect_product");
+      mos_arreglo = JSON.parse(mos_arreglo);
+      if (mos_arreglo) {
+    let columnaSeg = document.getElementById("segC");
+    let columnaTer = document.getElementById("terC");
 
-// pantalla de compra
-let inicio = document.getElementById("Inicio");
-if (inicio) {
-  let mos_arreglo = localStorage.getItem("vect_product");
-  mos_arreglo = JSON.parse(mos_arreglo);
-  let columnaSeg = document.getElementById("segC");
-  let columnaTer = document.getElementById("terC");
-
-  inicio.innerHTML = `
+    inicio.innerHTML = `
+  <br>
   <h3 class="letra">Identificacion</h3>
     <form>
         <ul>
@@ -153,8 +152,9 @@ if (inicio) {
                </form>
               
         `;
-  columnaSeg.innerHTML = `
-        <h3 class="letra">Domicilio de Entrega</h3>
+    columnaSeg.innerHTML = `
+  <br>    
+    <h3 class="letra">Domicilio de Entrega</h3>
         <form>
         <ul>
             <li>
@@ -172,8 +172,9 @@ if (inicio) {
           </ul>
         </form>
         `;
-  columnaTer.innerHTML = `
-        <h3 class="letra">Pago</h3>
+    columnaTer.innerHTML = `
+  <br>  
+    <h3 class="letra">Pago</h3>
         <form> 
         <ul>
           <li>
@@ -225,42 +226,88 @@ if (inicio) {
             
             </form>
         `;
-  // SEGUNDO DIV
+    // SEGUNDO DIV
 
-  let pantallacarrito = document.getElementById("tbody");
-  let total = document.getElementById("total");
-  total.innerHTML = "";
-  let sumTotal = 0;
-  pantallacarrito.innerHTML = "";
-  let pos = [];
-  for (let i of mos_arreglo) {
-    sumTotal += parseFloat(i.total);
-    pantallacarrito.innerHTML += `
+    let pantallacarrito = document.getElementById("tbody");
+    total.innerHTML = "";
+    let valores = [];
+    pantallacarrito.innerHTML = "";
+    for (let i of mos_arreglo) {
+      valores.push([i.nombre, i.total]);
+      pantallacarrito.innerHTML += `
                   <tr>
-                          <td>${i.nombre}</td>
+                          <td class="nombre">${i.nombre}</td>
                           <td>
                           <input for="Cantidad" id="Cantidad" class="Cantidad" type="number" value="1" min="1" max="5"> 
                           </td>
-                          <td id="Total">$ ${i.total}</td>
+                          <td  class="Total" id="Total">$ ${i.total}</td>
                           <td> <button  class="btn-danger btn_eliminar" type="button">  Eliminar </button></td>
                   </tr>
             `;
 
-    const cantidades = document.querySelectorAll(".Cantidad");
-    const nuevo = document.getElementById("Total");
-    cantidades.forEach((cantidad) => {
-      
-      cantidad.addEventListener("change", (event) => {
-        console.log(event.target);
-        let total = document.getElementById("Total").innerHTML;
-        console.log(total)
-        console.log(event.currentTarget.value);
-        console.log(i.total)
-        //  console.log(parseFloat(total.slice(1)) * event.target.value);
+      const cantidades = document.querySelectorAll(".Cantidad");
+      let nuevoTotal;
+      let valorFijo;
+      cantidades.forEach((cantidad) => {
+        cantidad.addEventListener("change", (event) => {
+          if ((event.target.tagName = "td")) {
+            let fila = event.target.parentNode.parentNode;
+            let precioFijo = fila.querySelector(".Total").innerHTML.slice(1);
+            if (fila) {
+              if (parseInt(event.target.value) === 1) {
+                let nombre = fila.querySelector(".nombre").innerHTML;
+                for (let i of valores) {
+                  if (i[0] === nombre) {
+                    valorFijo = i[1];
+                  }
+                }
+                fila.querySelector(".Total").innerHTML = `$ ${valorFijo}`;
+              } else {
+                nuevoTotal = precioFijo * event.target.value;
+                fila.querySelector(
+                  ".Total"
+                ).innerHTML = `$ ${nuevoTotal.toFixed(2)}`;
+              }
+            }
+          }
+        });
       });
-    });
+      sumTotal += parseFloat(i.total);
+    }
   }
-  total.innerHTML = `PRECIO TOTAL: $${sumTotal}`;
+
+  total.innerHTML = `<br>
+  <label class="letra" id="precioTotal">
+  PRECIO TOTAL: $${sumTotal.toFixed(2)} 
+  </label>
+  <div>
+  <br>
+    <button class="btn-success btn_Actualizar" type="button"> Actualizar Precio
+    </button>
+  </div>
+  `;
+}
+let btn_Actualizar = document.querySelectorAll(".btn_Actualizar");
+let sumaTotal = 0;
+
+for (let btn of btn_Actualizar) {
+  btn.addEventListener("click", (event) => {
+    let sum = 0;
+    nodelist = document.querySelectorAll(".Total");
+    let cant = 0;
+    for (let i of nodelist) {
+      sum += parseFloat(i.innerHTML.slice(2));
+    }
+    document.getElementById(
+      "precioTotal"
+    ).innerHTML = `PRECIO TOTAL: $ ${sum.toFixed(2)}`;
+  });
+}
+let btn_vaciarCarrito = document.querySelectorAll(".btn_vaciarCarrito");
+for (let btn of btn_vaciarCarrito) {
+  btn.addEventListener("click", (event) => {
+    localStorage.clear();
+  });
 }
 
 const compra_producto = () => {
@@ -269,7 +316,6 @@ const compra_producto = () => {
   formulario.innerHTML = `<h1>LLEGO </h1>`;
 };
 function borrar_producto(e) {
-  console.log("BORRAR ESTE ELEMENTO: ", e.target);
   let abuelo = e.target.parentNode.parentNode;
   console.log(abuelo);
   // let producto_eliminar = abuelo.querySelector("p").textContent;
@@ -309,3 +355,7 @@ const realizarCompra = () => {
     alert("Seleccione un producto / cuotas a pagar");
   }
 };
+let btn_borrar = document.querySelectorAll(".btn_eliminar");
+for (let btn of btn_borrar) {
+  btn.addEventListener("click", borrar_producto);
+}
