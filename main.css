@@ -161,8 +161,17 @@ table {
   display: table;
   clear: both;
 }
-input[type=text],[type=email] {
+input[type=text],[type=email],[type=date] {
   width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: #3CBC8D;
+  color: white;
+}
+.fechaV{
+  width: 25%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -177,4 +186,23 @@ textarea {
   background-color: #3CBC8D;
   color: white;
   font-family: 'Roboto';
+}
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: lightblue;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
 }

@@ -19,7 +19,7 @@ let vecProduct = [];
 let filtroSelect = document.querySelector("#filtro");
 let contenedor = document.getElementById("contenedor");
 cargaProd();
-if(filtroSelect){
+if (filtroSelect) {
   filtroSelect.addEventListener("change", () => {
     if (filtroSelect.value == "all") {
       mostrarProductos(arrayDetalles);
@@ -29,11 +29,12 @@ if(filtroSelect){
       );
       mostrarProductos(arrayFiltrado);
     }
-  });}
+  });
+}
 
 const mostrarProductos = (array) => {
- if (contenedor){
-  contenedor.innerHTML = "";
+  if (contenedor) {
+    contenedor.innerHTML = "";
     array.forEach((prod) => {
       let div = document.createElement("div");
       div.className = "col active align-self-start";
@@ -46,8 +47,8 @@ const mostrarProductos = (array) => {
             `;
       contenedor.appendChild(div);
     });
-  };
-}
+  }
+};
 mostrarProductos(arrayDetalles);
 const agregarCarrito = () => {
   let label = document.getElementById("label");
@@ -122,10 +123,11 @@ let inicio = document.getElementById("Inicio");
 if (inicio) {
   let mos_arreglo = localStorage.getItem("vect_product");
   mos_arreglo = JSON.parse(mos_arreglo);
-  console.log(mos_arreglo)
-  
+  let columnaSeg = document.getElementById("segC");
+  let columnaTer = document.getElementById("terC");
+
   inicio.innerHTML = `
-  </br>
+  <h3 class="letra">Identificacion</h3>
     <form>
         <ul>
           <li>
@@ -137,38 +139,117 @@ if (inicio) {
             <input type="text" id="apellido" name="user_lastname">
           </li>
           <li>
+          <label class="letra" for="name">Fecha de Nacimiento:</label>
+          <input type="date" id="FechaNac" name="FechaNac">
+          </li> 
+          <li>
             <label  class="letra" for="mail">Correo electrónico:</label>
             <input type="email" id="mail" name="user_mail">
           </li>
           <li>
-            <label class="letra" for="msg">Mensaje:</label>
-            <textarea id="msg" name="user_message"></textarea>
+          <label  class="letra" for="telefono">Telefono:</label>
+          <input type="text" id="telefono" name="telefono">          
           </li>
-               </form> 
+               </form>
+              
         `;
-        // SEGUNDO DIV
-      
-        let pantallacarrito = document.getElementById("tbody");
-        let total = document.getElementById("total");
-        total.innerHTML="";
-        let sumTotal=0;
-        pantallacarrito.innerHTML = "";
-        for (let i of mos_arreglo) {
-          sumTotal += parseFloat(i.total);
-          pantallacarrito.innerHTML += `
+  columnaSeg.innerHTML = `
+        <h3 class="letra">Domicilio de Entrega</h3>
+        <form>
+        <ul>
+            <li>
+              <label class="letra" for="name">Dirrecion:</label>
+              <input type="text" id="direccion" name="direccion">
+            </li>   
+            <li>
+              <label  class="letra" for="mail">Codigo Postal:</label>
+              <input type="email" id="mail" name="user_mail">
+            </li>
+            <li>
+            <label  class="letra" for="mail">Localidad:</label>
+            <input type="email" id="mail" name="user_mail">
+            </li>
+          </ul>
+        </form>
+        `;
+  columnaTer.innerHTML = `
+        <h3 class="letra">Pago</h3>
+        <form> 
+        <ul>
+          <li>
+            <label class="letra">Numero de tarjeta</label>
+            <input type="text" id="direccion" name="direccion" autocomplete="cc-number" inputmode="numeric" maxlength="50" pattern="[\d ]{10,30}" required>
+          </li>       
+          <li>
+            <label class="letra" for="cc-name">Nombre en la tarjeta</label>
+            <input type="text"id="cc-name" name="cc-name" autocomplete="cc-name" maxlength="50" pattern="[\p{L} \-\.]+" required>
+          </li>
+          <li>
+            <label class="letra">Fecha de Vencimiento</label>
+            <select class="fechaV" id="cc-exp-month" name="cc-exp-month" autocomplete="cc-exp-month" placeholder="MM">
+            <option value="">MM</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            </select>
+            <select class="fechaV" id="cc-exp-year" name="cc-exp-year" autocomplete="cc-exp-year" placeholder="YY">
+            <option value="">YY</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            </select>   
+          </li>
+          <li>
+            <label class="letra"for="cc-csc">Codigo de seguridad</label>
+            <input  type="text" id="cc-csc" name="cc-csc" inputmode="numeric" maxlength="3" required>
+            <label class="letra">los ultimos 3 numeros del dorso de su tarjeta</label> 
+          </li>
+        </ul>
+            
+            </form>
+        `;
+  // SEGUNDO DIV
+
+  let pantallacarrito = document.getElementById("tbody");
+  let total = document.getElementById("total");
+  total.innerHTML = "";
+  let sumTotal = 0;
+  pantallacarrito.innerHTML = "";
+  let pos=[];
+  for (let i of mos_arreglo) {
+    sumTotal += parseFloat(i.total);
+    pantallacarrito.innerHTML += `
                   <tr>
                           <td>${i.nombre}</td>
-                          <td> ${i.cantidad}</td>
+                          <td>
+                          <input for="Cantidad" id="Cantidad" type="number" value="1" min="1" max="5"> 
+                          </td>
                           <td>$ ${i.total}</td>
                           <td> <button  class="btn-danger btn_eliminar" type="button">  Eliminar </button></td>
                   
                   </tr>
             `;
 
-        }
-        total.innerHTML=`PRECIO TOTAL: $${sumTotal}`
+  }
+  total.innerHTML = `PRECIO TOTAL: $${sumTotal}`;
 }
-
 
 const compra_producto = () => {
   let formulario = document.getElementById("compra");
