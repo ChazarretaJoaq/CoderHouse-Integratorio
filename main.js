@@ -232,28 +232,33 @@ if (inicio) {
   total.innerHTML = "";
   let sumTotal = 0;
   pantallacarrito.innerHTML = "";
-  let pos=[];
+  let pos = [];
   for (let i of mos_arreglo) {
     sumTotal += parseFloat(i.total);
     pantallacarrito.innerHTML += `
                   <tr>
                           <td>${i.nombre}</td>
                           <td>
-                          <input for="Cantidad" id="Cantidad" type="number" value="1" min="1" max="5"> 
+                          <input for="Cantidad" id="Cantidad" class="Cantidad" type="number" value="1" min="1" max="5"> 
                           </td>
-                          <td>$ ${i.total}</td>
+                          <td id="Total">$ ${i.total}</td>
                           <td> <button  class="btn-danger btn_eliminar" type="button">  Eliminar </button></td>
-                  
                   </tr>
             `;
-            const cantidades = document.querySelector(".Cantidad");
-            cantidades.forEach(cantidad => {
-              cantidad.addEventListener('change', (event) => {
-                console.log(event.target.value);
-              });
-            });
 
-  } 
+    const cantidades = document.querySelectorAll(".Cantidad");
+    const nuevo = document.getElementById("Total");
+    cantidades.forEach((cantidad) => {
+      
+      cantidad.addEventListener("change", (event) => {
+        console.log(event.target);
+        let total = document.getElementById("Total").innerHTML;
+        console.log(total)
+        console.log(event.currentTarget.value);
+        //  console.log(parseFloat(total.slice(1)) * event.target.value);
+      });
+    });
+  }
   total.innerHTML = `PRECIO TOTAL: $${sumTotal}`;
 }
 
