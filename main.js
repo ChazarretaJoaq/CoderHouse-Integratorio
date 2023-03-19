@@ -19,6 +19,7 @@ let vecProduct = [];
 let filtroSelect = document.querySelector("#filtro");
 let contenedor = document.getElementById("contenedor");
 cargaProd();
+
 if (filtroSelect) {
   filtroSelect.addEventListener("change", () => {
     if (filtroSelect.value == "all") {
@@ -59,10 +60,11 @@ const agregarCarrito = () => {
   );
   // obtener precios
   let prodValue = obtenerValorProduct();
+  console.log(prodValue);
   let cantidad = 1;
-  let totalIva = calcularIva(prodValue) * cantidad;
-  console.log(totalIva);
-  if (cantidad > 0 && totalIva > 0) {
+  // let totalIva = calcularIva(prodValue) * cantidad;
+  // console.log(totalIva);
+  if (cantidad > 0) {
     vecProduct.push(
       new Product(
         descripcion.nombre,
@@ -71,7 +73,7 @@ const agregarCarrito = () => {
         descripcion.id,
         descripcion.categoria,
         cantidad,
-        totalIva.toFixed(2)
+        prodValue
       )
     );
   }
@@ -110,44 +112,43 @@ const mostrarCarrito = () => {
         </a>
         </div></br>
         `;
-      }
-    };
-    
-    // pantalla de compra
-    let inicio = document.getElementById("Inicio");
-    let total = document.getElementById("total");
-    let sumTotal = 0;
-    if (inicio) {
-      let mos_arreglo = localStorage.getItem("vect_product");
-      mos_arreglo = JSON.parse(mos_arreglo);
-      if (mos_arreglo) {
-    let columnaSeg = document.getElementById("segC");
-    let columnaTer = document.getElementById("terC");
+  }
+};
 
+// pantalla de compra
+let inicio = document.getElementById("Inicio");
+let total = document.getElementById("total");
+let sumTotal = 0;
+if (inicio) {
+  let mos_arreglo = localStorage.getItem("vect_product");
+  mos_arreglo = JSON.parse(mos_arreglo);
+  let columnaSeg = document.getElementById("segC");
+  let columnaTer = document.getElementById("terC");
+  if (mos_arreglo) {
     inicio.innerHTML = `
   <br>
   <h3 class="letra">Identificacion</h3>
-    <form>
+    <form class="identificacion" id="identificacion">
         <ul>
           <li>
             <label class="letra" for="name">Nombre:</label>
-            <input type="text" id="name" name="user_name">
+            <input type="text" id="name" name="user_name"  placeholder="INGRESE SU NOMBRE" required>
           </li>   
           <li>
             <label class="letra" for="name">Apellido:</label>
-            <input type="text" id="apellido" name="user_lastname">
+            <input type="text" id="apellido" name="user_lastname" placeholder="INGRESE SU APELLIDO" required>
           </li>
           <li>
           <label class="letra" for="name">Fecha de Nacimiento:</label>
-          <input type="date" id="FechaNac" name="FechaNac">
+          <input type="date" id="FechaNac" name="FechaNac" required>
           </li> 
           <li>
             <label  class="letra" for="mail">Correo electrónico:</label>
-            <input type="email" id="mail" name="user_mail">
+            <input type="email" id="mail" name="user_mail" placeholder="INGRESE SU E-MAIL" required>
           </li>
           <li>
           <label  class="letra" for="telefono">Telefono:</label>
-          <input type="text" id="telefono" name="telefono">          
+          <input type="text" id="telefono" name="telefono" placeholder="INGRESE SU TELEFONO" required>          
           </li>
                </form>
               
@@ -155,19 +156,27 @@ const mostrarCarrito = () => {
     columnaSeg.innerHTML = `
   <br>    
     <h3 class="letra">Domicilio de Entrega</h3>
-        <form>
+        <form class="domicilio">
         <ul>
             <li>
               <label class="letra" for="name">Dirrecion:</label>
-              <input type="text" id="direccion" name="direccion">
+              <input type="text" id="direccion" name="direccion" placeholder="INGRESE SU DIRECCION">
             </li>   
             <li>
               <label  class="letra" for="mail">Codigo Postal:</label>
-              <input type="email" id="mail" name="user_mail">
+              <input type="text" id="codigo_postal" name="codigo_postal" placeholder="INGRESE SU CODIGO POSTAL">
+            </li>
+            <li>
+            <label  class="letra" for="provincia">Provincia:</label>
+            <input type="text" id="provincia" name="provincia" placeholder="INGRESE SU PROVINCIA">
+            </li>
+            <li>
+            <label  class="letra" for="mail">Partido:</label>
+            <input type="text" id="partido" name="partido" placeholder="INGRESE SU PARTIDO">
             </li>
             <li>
             <label  class="letra" for="mail">Localidad:</label>
-            <input type="email" id="mail" name="user_mail">
+            <input type="text" id="localidad" name="localidad" placeholder="INGRESE SU LOCALIDAD">
             </li>
           </ul>
         </form>
@@ -175,19 +184,19 @@ const mostrarCarrito = () => {
     columnaTer.innerHTML = `
   <br>  
     <h3 class="letra">Pago</h3>
-        <form> 
+        <form class="Tarjeta"> 
         <ul>
           <li>
             <label class="letra">Numero de tarjeta</label>
-            <input type="text" id="direccion" name="direccion" autocomplete="cc-number" inputmode="numeric" maxlength="50" pattern="[\d ]{10,30}" required>
+            <input id="numero_tarjeta" type="text" maxlength="50" pattern="[\d ]{10,30}" placeholder="INGRESE EL NUMERO DE SU TARJETA" required>
           </li>       
           <li>
             <label class="letra" for="cc-name">Nombre en la tarjeta</label>
-            <input type="text"id="cc-name" name="cc-name" autocomplete="cc-name" maxlength="50" pattern="[\p{L} \-\.]+" required>
+            <input id="nombre_tarjeta" type="text" maxlength="50" pattern="[\p{L} \-\.]+" placeholder="INGRESE EL NOMBRE DE SU TARJETA" required>
           </li>
           <li>
             <label class="letra">Fecha de Vencimiento</label>
-            <select class="fechaV" id="cc-exp-month" name="cc-exp-month" autocomplete="cc-exp-month" placeholder="MM">
+            <select id="mes_tarjeta" class="fechaV" placeholder="MM">
             <option value="">MM</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -202,7 +211,7 @@ const mostrarCarrito = () => {
             <option value="11">11</option>
             <option value="12">12</option>
             </select>
-            <select class="fechaV" id="cc-exp-year" name="cc-exp-year" autocomplete="cc-exp-year" placeholder="YY">
+            <select id="anio_tarjeta" class="fechaV" placeholder="YY">
             <option value="">YY</option>
             <option value="20">20</option>
             <option value="21">21</option>
@@ -218,8 +227,8 @@ const mostrarCarrito = () => {
             </select>   
           </li>
           <li>
-            <label class="letra"for="cc-csc">Codigo de seguridad</label>
-            <input  type="text" id="cc-csc" name="cc-csc" inputmode="numeric" maxlength="3" required>
+            <label class="letra">Codigo de seguridad</label>
+            <input id="codigo_tarjeta"  type="text" inputmode="numeric" maxlength="3"  placeholder="INGRESE SU CODIGO DE SEGURIDAD" required>
             <label class="letra">los ultimos 3 numeros del dorso de su tarjeta</label> 
           </li>
         </ul>
@@ -274,8 +283,17 @@ const mostrarCarrito = () => {
       });
       sumTotal += parseFloat(i.total);
     }
+  } else {
+    columnaSeg.innerHTML = `
+  <h2 class="letra">
+  Carrito Vacio
+  </h2>
+  <br>
+  <a href="index.html">
+  <button  class="btn-info" type="button"> Regrese a la Pagina Principal </button> 
+  </a>
+  `;
   }
-
   total.innerHTML = `<br>
   <label class="letra" id="precioTotal">
   PRECIO TOTAL: $${sumTotal.toFixed(2)} 
@@ -287,12 +305,13 @@ const mostrarCarrito = () => {
   </div>
   `;
 }
+
 let btn_Actualizar = document.querySelectorAll(".btn_Actualizar");
 let sumaTotal = 0;
+let sum = 0;
 
 for (let btn of btn_Actualizar) {
   btn.addEventListener("click", (event) => {
-    let sum = 0;
     nodelist = document.querySelectorAll(".Total");
     let cant = 0;
     for (let i of nodelist) {
@@ -307,28 +326,77 @@ let btn_vaciarCarrito = document.querySelectorAll(".btn_vaciarCarrito");
 for (let btn of btn_vaciarCarrito) {
   btn.addEventListener("click", (event) => {
     localStorage.clear();
+    location.reload();
   });
 }
 
-const compra_producto = () => {
-  let formulario = document.getElementById("compra");
-  console.log("LLEGO");
-  formulario.innerHTML = `<h1>LLEGO </h1>`;
-};
+// const compra_producto = () => {
+//   let formulario = document.getElementById("compra");
+//   formulario.innerHTML = `<h1>LLEGO </h1>`;
+// };
+
 function borrar_producto(e) {
   let abuelo = e.target.parentNode.parentNode;
+  let nombre_product = abuelo.querySelector(".nombre").innerHTML;
+  console.log(nombre_product);
   console.log(abuelo);
-  // let producto_eliminar = abuelo.querySelector("p").textContent;
-  //   function eliminar_producto(producto) {
-  //     return producto.nombre != producto_eliminar;
-  //   }
-  //   let resultado_filter = carrito.filter(eliminar_producto);
+  let mos_arreglo = localStorage.getItem("vect_product");
+  mos_arreglo = JSON.parse(mos_arreglo);
+  let carrito = [...mos_arreglo];
+  console.log(carrito);
 
-  //   carrito = resultado_filter;
-  //   // console.log( carrito );
+  function eliminar_producto(Product) {
+    console.log(Product);
+    return Product.nombre != nombre_product;
+  }
+  let resultado_filter = carrito.filter(eliminar_producto);
 
-  mostrarCarrito();
-  //abuelo.remove();
+  carrito = resultado_filter;
+  console.log(carrito);
+
+  // mostrarCarrito();
+  abuelo.remove();
+}
+
+let btn_terminar = document.querySelectorAll(".btn_terminar");
+for (let btn of btn_terminar) {
+  btn.addEventListener("click", (event) => {
+    let nombre = document.getElementById("name").value;
+    let apellido = document.getElementById("apellido").value;
+    let FechaNac = document.getElementById("FechaNac").value;
+    let mail = document.getElementById("mail").value;
+    let telefono = document.getElementById("telefono").value;
+    let precioTotal = document.getElementById("precioTotal").innerHTML;
+    let valorPantalla;
+    if (sum > 0) {
+      valorPantalla = sum;
+    } else {
+      valorPantalla = sumTotal;
+    }
+    let direccion = document.getElementById("direccion").value;
+    let codigo_postal = document.getElementById("codigo_postal").value;
+    let provincia = document.getElementById("provincia").value;
+    let partido = document.getElementById("partido").value;
+    let localidad = document.getElementById("localidad").value;
+
+    let numero_tarjeta = document.getElementById("numero_tarjeta").value;
+    let nombre_tarjeta = document.getElementById("nombre_tarjeta").value;
+    let codigo_tarjeta = document.getElementById("codigo_tarjeta").value;
+    let mes_tarjeta = document.getElementById("mes_tarjeta").value;
+    let anio_tarjeta = document.getElementById("anio_tarjeta").value;
+
+    let cuotas = obtenerCuotas();
+    if (cuotas !== 0) {
+      let { total, interes } = calcularCuotas(valorPantalla, cuotas);
+      if (
+        confirm(`El Precio total a pagar es: $ ${total.toFixed(2)}
+    Valor de Cuota: ${(total / cuotas).toFixed(2)} $. En ${cuotas} cuotas.
+    Con un interes de ${interes.toFixed(2)}$.
+        `)
+      ) {
+      }
+    }
+  });
 }
 
 const realizarCompra = () => {
